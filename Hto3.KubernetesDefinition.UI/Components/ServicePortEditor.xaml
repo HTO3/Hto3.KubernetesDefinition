@@ -1,0 +1,50 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dynamic="clr-namespace:System.Dynamic;assembly=System.Core"
+             xmlns:local="clr-namespace:Hto3.KubernetesDefinition.UI.Components"
+             xmlns:pt="http://propertytools.org/wpf" xmlns:syncfusion="http://schemas.syncfusion.com/wpf" xmlns:Globalization="clr-namespace:System.Globalization;assembly=mscorlib" x:Class="Hto3.KubernetesDefinition.UI.Components.ServicePortEditor"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance {x:Type dynamic:ExpandoObject}}" d:Height="109" d:Width="332" d:DesignHeight="157.667" d:DesignWidth="429">
+    <Grid>
+        <syncfusion:UpDown x:Name="updownExposedPort" Margin="97,14,0,0" Width="85" HorizontalAlignment="Left" VerticalAlignment="Top" MinValue="0" MaxValue="65535" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0"/>
+        <Label Content="Exposed Port" Margin="13,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="The port that will be exposed by this service."/>
+        <ComboBox x:Name="cmbProtocol" Width="74" Margin="257,13,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <ComboBoxItem Content="TCP"/>
+            <ComboBoxItem Content="UDP"/>
+            <ComboBoxItem Content="SCTP"/>
+        </ComboBox>
+        <Label Content="Protocol" Margin="194,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="58" ToolTip="The IP protocol for this port. Supports &quot;TCP&quot;, &quot;UDP&quot;, and &quot;SCTP&quot;. Default is TCP."/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="17,75,14,15">
+            <ItemsControl x:Name="itcValues" Background="#FFE1E1E1" ItemsSource="{Binding Mode=OneWay}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="2" Orientation="Horizontal" Background="#FD326CE5">
+                            <TextBlock Padding="10,4,0,4" FontWeight="Bold" Text="{Binding Name}" Foreground="White"/>
+                            <TextBlock Padding="3" Text=":" FontWeight="Bold" Foreground="White"/>
+                            <TextBlock Padding="4" Text="Exposed Port" Foreground="White"/>
+                            <TextBlock Padding="4" Text="{Binding ExposedPort}" Foreground="White"/>
+                            <TextBlock Padding="3" Text="|" FontWeight="Bold" Foreground="White"/>
+                            <TextBlock Padding="4" Text="Internal Port" Foreground="White"/>
+                            <TextBlock Padding="4" Text="{Binding InternalPort}" Foreground="White"/>
+                            <TextBlock Padding="3" Text="|" FontWeight="Bold" Foreground="White"/>
+                            <TextBlock Padding="4,4,2,4" Text="{Binding Protocol}" Foreground="White"/>
+                            <TextBlock Margin="0,-11,0,0" Padding="0, 2" Text="X" Height="12" Width="12" TextAlignment="Center" Opacity="0.6" MouseUp="Remove_Click" Foreground="White" FontSize="8" FontFamily="Arial"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+        <Button Content="Add" Click="Add_Click" Margin="389,44,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <syncfusion:UpDown x:Name="updownInternalPort" Margin="97,44,0,0" Width="85" HorizontalAlignment="Left" VerticalAlignment="Top" MinValue="0" MaxValue="65535" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0"/>
+        <Label Content="Internal Port" Margin="13,41,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Number or name of the port to access on the pods targeted by the service. Number must&#13;&#10;be in the range 1 to 65535. Name must be an IANA_SVC_NAME. If this is a String, it&#13;&#10;will be looked up as a named port in the target Pod's container ports. If this is&#13;&#10;not specified, the value of the 'port' field is used (an identity map). This field&#13;&#10;is ignored for services with clusterIP=None, and should be omitted or set equal to&#13;&#10;the 'port' field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service"/>
+        <Label Content="Name" Margin="210,41,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="The name of this port within the service. This must be a DNS_LABEL. All ports&#13;&#10;within a ServiceSpec must have unique names. This maps to the 'Name' field in&#13;&#10;EndpointPort objects. Optional if only one ServicePort is defined on this service." />
+        <TextBox x:Name="txtName" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="257,45,0,0" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hto3.KubernetesDefinition.UI", "Hto3.KubernetesDefinition.UI\Hto3.KubernetesDefinition.UI.csproj", "{B55B9B7D-86DD-45D2-B6E8-681F6441B522}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hto3.KubernetesDefinition.Models", "Hto3.KubernetesDefinition.Models\Hto3.KubernetesDefinition.Models.csproj", "{7AD1732A-DE6A-4C12-9653-3658ACDF92D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hto3.KubernetesDefinition.Services", "Hto3.KubernetesDefinition.Services\Hto3.KubernetesDefinition.Services.csproj", "{6D4DEB11-7A7F-4EB6-B68D-69D51218F582}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C5AFB378-5649-456D-949E-75439E6A3143}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{050D7F2D-A59D-4E2C-B70B-348D9B8345BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{5E403EF7-8B8B-4F04-9BD0-B0EE0FEC8266}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\publish.yml = .github\workflows\publish.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{50718E1A-B492-4DDE-861A-7CB4E52D4C41}"
+	ProjectSection(SolutionItems) = preProject
+		docs\icon_example.png = docs\icon_example.png
+		docs\main_screen.png = docs\main_screen.png
+		docs\NEW_OBJECT.md = docs\NEW_OBJECT.md
+		docs\object_manager_view.png = docs\object_manager_view.png
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B55B9B7D-86DD-45D2-B6E8-681F6441B522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B55B9B7D-86DD-45D2-B6E8-681F6441B522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B55B9B7D-86DD-45D2-B6E8-681F6441B522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B55B9B7D-86DD-45D2-B6E8-681F6441B522}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AD1732A-DE6A-4C12-9653-3658ACDF92D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AD1732A-DE6A-4C12-9653-3658ACDF92D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AD1732A-DE6A-4C12-9653-3658ACDF92D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AD1732A-DE6A-4C12-9653-3658ACDF92D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D4DEB11-7A7F-4EB6-B68D-69D51218F582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D4DEB11-7A7F-4EB6-B68D-69D51218F582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D4DEB11-7A7F-4EB6-B68D-69D51218F582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D4DEB11-7A7F-4EB6-B68D-69D51218F582}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{050D7F2D-A59D-4E2C-B70B-348D9B8345BE} = {C5AFB378-5649-456D-949E-75439E6A3143}
+		{5E403EF7-8B8B-4F04-9BD0-B0EE0FEC8266} = {050D7F2D-A59D-4E2C-B70B-348D9B8345BE}
+		{50718E1A-B492-4DDE-861A-7CB4E52D4C41} = {C5AFB378-5649-456D-949E-75439E6A3143}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51E99AAC-D3CA-4565-9247-3171A4E1EF19}
+	EndGlobalSection
+EndGlobal

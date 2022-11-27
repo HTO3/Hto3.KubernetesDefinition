@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\PropertyChanged.Fody.4.1.0\build\PropertyChanged.Fody.props" Condition="Exists('..\packages\PropertyChanged.Fody.4.1.0\build\PropertyChanged.Fody.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B55B9B7D-86DD-45D2-B6E8-681F6441B522}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Hto3.KubernetesDefinition.UI</RootNamespace>
+    <AssemblyName>Hto3.KubernetesDefinition.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Icons\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Hto3.CollectionHelpers, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hto3.CollectionHelpers.1.0.7\lib\net48\Hto3.CollectionHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Hto3.EnumHelpers, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hto3.EnumHelpers.1.0.6\lib\net48\Hto3.EnumHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Hto3.StringHelpers, Version=1.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hto3.StringHelpers.1.1.5\lib\net48\Hto3.StringHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.7.0.0\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross, Version=8.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.8.0.2\lib\net461\MvvmCross.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platforms.Wpf, Version=8.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Platforms.Wpf.8.0.2\lib\net461\MvvmCross.Platforms.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugin.Messenger, Version=8.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Messenger.8.0.2\lib\netstandard2.0\MvvmCross.Plugin.Messenger.dll</HintPath>
+    </Reference>
+    <Reference Include="Ookii.Dialogs.Wpf, Version=5.0.0.0, Culture=neutral, PublicKeyToken=66aa232afad40158, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ookii.Dialogs.Wpf.5.0.1\lib\net462\Ookii.Dialogs.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="PropertyChanged, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>..\packages\PropertyChanged.Fody.4.1.0\lib\net40\PropertyChanged.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpVectors.Converters.Wpf, Version=1.8.1.0, Culture=neutral, PublicKeyToken=b532964b8548be77, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVectors.Wpf.1.8.1\lib\net48\SharpVectors.Converters.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpVectors.Core, Version=1.8.1.0, Culture=neutral, PublicKeyToken=7407205e337c98ef, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVectors.Wpf.1.8.1\lib\net48\SharpVectors.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpVectors.Css, Version=1.8.1.0, Culture=neutral, PublicKeyToken=7a46e3f532fdb787, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVectors.Wpf.1.8.1\lib\net48\SharpVectors.Css.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpVectors.Dom, Version=1.8.1.0, Culture=neutral, PublicKeyToken=517340b6277b1a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVectors.Wpf.1.8.1\lib\net48\SharpVectors.Dom.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpVectors.Model, Version=1.8.1.0, Culture=neutral, PublicKeyToken=2236cfc76b505845, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVectors.Wpf.1.8.1\lib\net48\SharpVectors.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpVectors.Rendering.Wpf, Version=1.8.1.0, Culture=neutral, PublicKeyToken=d0902381100df30e, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVectors.Wpf.1.8.1\lib\net48\SharpVectors.Rendering.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpVectors.Runtime.Wpf, Version=1.8.1.0, Culture=neutral, PublicKeyToken=d16e717f0a981fb9, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVectors.Wpf.1.8.1\lib\net48\SharpVectors.Runtime.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=20.3460.0.47, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.20.3.0.47\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfInput.WPF, Version=20.3460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfInput.WPF.20.3.0.47\lib\net46\Syncfusion.SfInput.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.WPF, Version=20.3460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.WPF.20.3.0.47\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Console, Version=4.0.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.1\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="YamlDotNet, Version=12.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.12.0.2\lib\net47\YamlDotNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Common\ConfigMapFileEntry.cs" />
+    <Compile Include="Common\ConfigMapVolumeItem.cs" />
+    <Compile Include="Common\ConfigurationAttribute.cs" />
+    <Compile Include="Common\DummyKubernetesObject.cs" />
+    <Compile Include="Common\EditorViewBaseWindow.cs" />
+    <Compile Include="Common\ExtensionMethods.cs" />
+    <Compile Include="Common\IClearableViewModel.cs" />
+    <Compile Include="Common\IObjectMetadata.cs" />
+    <Compile Include="Common\IViewModelMapper.cs" />
+    <Compile Include="Common\OpenFileDialogResult.cs" />
+    <Compile Include="Common\SaveFileDialogResult.cs" />
+    <Compile Include="Common\ServicePortSetup.cs" />
+    <Compile Include="Components\ConfigMapVolumeItemEditor.xaml.cs">
+      <DependentUpon>ConfigMapVolumeItemEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ConfigMapFileEditor.xaml.cs">
+      <DependentUpon>ConfigMapFileEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\Base64StringToByteLenghtConverter.cs" />
+    <Compile Include="Converters\EnumToBooleanConverter.cs" />
+    <Compile Include="Converters\NameExtractorConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\NumberAddConverter.cs" />
+    <Compile Include="Messages\ConfigMapItemsSignalMessage.cs" />
+    <Compile Include="Messages\ConfigMapSignalMessage.cs" />
+    <Compile Include="Messages\CurrentConfigMapItemsMessage.cs" />
+    <Compile Include="Messages\CurrentConfigMapsMessage.cs" />
+    <Compile Include="Messages\KubernetesObjectChangingMessage.cs" />
+    <Compile Include="Messages\QueryFromExistingEditorMessage.cs" />
+    <Compile Include="ObjectMappers\ConfigMapViewModelMapper.cs" />
+    <Compile Include="ObjectMappers\CronJobViewModelMapper.cs" />
+    <Compile Include="ObjectMetadata\ConfigMapMetadata.cs" />
+    <Compile Include="ObjectMetadata\CronJobMetadata.cs" />
+    <Compile Include="ObjectMetadata\DeploymentMetadata.cs" />
+    <Compile Include="ObjectMetadata\NamespaceMetadata.cs" />
+    <Compile Include="ObjectMetadata\PodMetadata.cs" />
+    <Compile Include="ObjectMetadata\ReplicaSetMetadata.cs" />
+    <Compile Include="ObjectMetadata\ServiceMetadata.cs" />
+    <Compile Include="ObjectMetadata\VolumeMetadata.cs" />
+    <Compile Include="ViewModels\ConfigMapObjectManagerViewModel.cs" />
+    <Compile Include="ViewModels\ConfigMapViewModel.cs" />
+    <Compile Include="ViewModels\ConfigMapVolumeViewModel.cs" />
+    <Compile Include="ViewModels\CronJobObjectManagerViewModel.cs" />
+    <Compile Include="ViewModels\CronJobViewModel.cs" />
+    <Compile Include="ViewModels\EditorViewModel.cs" />
+    <Compile Include="Components\ServicePortEditor.xaml.cs">
+      <DependentUpon>ServicePortEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ExposePortEditor.xaml.cs">
+      <DependentUpon>ExposePortEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\VolumeMountEditor.xaml.cs">
+      <DependentUpon>VolumeMountEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\KeyValueEditor.xaml.cs">
+      <DependentUpon>KeyValueEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\AppendUriSegmentConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\EnumToDictionaryOptionsConverter.cs" />
+    <Compile Include="Converters\NullToBooleanConverter.cs" />
+    <Compile Include="DependencyInjection.cs" />
+    <Compile Include="Messages\CurrentNamespacesMessage.cs" />
+    <Compile Include="Messages\NamespacesSignalMessage.cs" />
+    <Compile Include="ObjectMappers\DeploymentViewModelMapper.cs" />
+    <Compile Include="ObjectMappers\NamespaceViewModelMapper.cs" />
+    <Compile Include="ObjectMappers\PodViewModelMapper.cs" />
+    <Compile Include="ObjectMappers\ReplicaSetViewModelMapper.cs" />
+    <Compile Include="ObjectMappers\ServiceViewModelMapper.cs" />
+    <Compile Include="ObjectMappers\VolumeViewModelMapper.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DeploymentObjectManagerViewModel.cs" />
+    <Compile Include="ViewModels\EmptyDirViewModel.cs" />
+    <Compile Include="ViewModels\CanvasViewModel.cs" />
+    <Compile Include="ViewModels\DeploymentViewModel.cs" />
+    <Compile Include="ViewModels\HostPathViewModel.cs" />
+    <Compile Include="ViewModels\NamespaceObjectManagerViewModel.cs" />
+    <Compile Include="ViewModels\NamespaceViewModel.cs" />
+    <Compile Include="ViewModels\PodObjectManagerViewModel.cs" />
+    <Compile Include="ViewModels\PodViewModel.cs" />
+    <Compile Include="Common\ExecuteContextMenuOption.cs" />
+    <Compile Include="ViewModels\ObjectManagerViewModel.cs" />
+    <Compile Include="ViewModels\ProbeViewModel.cs" />
+    <Compile Include="ViewModels\ReplicaSetObjectManagerViewModel.cs" />
+    <Compile Include="ViewModels\ReplicaSetViewModel.cs" />
+    <Compile Include="ViewModels\ServiceObjectManagerViewModel.cs" />
+    <Compile Include="ViewModels\ServiceViewModel.cs" />
+    <Compile Include="ViewModels\BestPracticesResultViewModel.cs" />
+    <Compile Include="ViewModels\VolumeObjectManagerViewModel.cs" />
+    <Compile Include="ViewModels\VolumeViewModel.cs" />
+    <Compile Include="Views\ConfigMapView.xaml.cs">
+      <DependentUpon>ConfigMapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConfigMapVolumeView.xaml.cs">
+      <DependentUpon>ConfigMapVolumeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CronJobView.xaml.cs">
+      <DependentUpon>CronJobView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HostPathView.xaml.cs">
+      <DependentUpon>HostPathView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmptyDirView.xaml.cs">
+      <DependentUpon>EmptyDirView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CanvasView.xaml.cs">
+      <DependentUpon>CanvasView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeploymentView.xaml.cs">
+      <DependentUpon>DeploymentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NamespaceView.xaml.cs">
+      <DependentUpon>NamespaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PodView.xaml.cs">
+      <DependentUpon>PodView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ObjectManagerView.xaml.cs">
+      <DependentUpon>ObjectManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProbeView.xaml.cs">
+      <DependentUpon>ProbeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReplicaSetView.xaml.cs">
+      <DependentUpon>ReplicaSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ServiceView.xaml.cs">
+      <DependentUpon>ServiceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BestPracticesResultView.xaml.cs">
+      <DependentUpon>BestPracticesResultView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VolumeView.xaml.cs">
+      <DependentUpon>VolumeView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Components\ConfigMapVolumeItemEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\ConfigMapFileEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ServicePortEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\ExposePortEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\VolumeMountEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\KeyValueEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\ConfigMapView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConfigMapVolumeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CronJobView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HostPathView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EmptyDirView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CanvasView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeploymentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NamespaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PodView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ObjectManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProbeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReplicaSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ServiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BestPracticesResultView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VolumeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Gliphs\deploy.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Gliphs\pod.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Gliphs\copy-solid.svg" />
+    <Resource Include="Resources\Gliphs\file-code-solid.svg" />
+    <Resource Include="Resources\Gliphs\floppy-disk-solid.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Gliphs\file-solid.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Gliphs\folder-open-solid.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Gliphs\svc.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hto3.KubernetesDefinition.Models\Hto3.KubernetesDefinition.Models.csproj">
+      <Project>{7ad1732a-de6a-4c12-9653-3658acdf92d4}</Project>
+      <Name>Hto3.KubernetesDefinition.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hto3.KubernetesDefinition.Services\Hto3.KubernetesDefinition.Services.csproj">
+      <Project>{6d4deb11-7a7f-4eb6-b68d-69d51218f582}</Project>
+      <Name>Hto3.KubernetesDefinition.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Gliphs\rs.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Gliphs\vol.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Gliphs\ns.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Gliphs\shield-check-solid.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Gliphs\cronjob.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Gliphs\cm.svg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.6.6.4\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.6.4\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\PropertyChanged.Fody.4.1.0\build\PropertyChanged.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PropertyChanged.Fody.4.1.0\build\PropertyChanged.Fody.props'))" />
+  </Target>
+  <Target Name="ConfigurationAttribute" BeforeTargets="BeforeBuild" Condition="'$(SyncfusionLicense)' != ''">
+    <WriteLinesToFile File="Properties\AssemblyInfo.cs" Lines="[assembly: Configuration(SyncfusionLicense = %22$(SyncfusionLicense)%22)]" />
+  </Target>
+  <Import Project="..\packages\Fody.6.6.4\build\Fody.targets" Condition="Exists('..\packages\Fody.6.6.4\build\Fody.targets')" />
+</Project>

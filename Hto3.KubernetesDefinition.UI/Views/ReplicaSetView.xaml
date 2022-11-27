@@ -1,0 +1,27 @@
+﻿<common:EditorViewBaseWindow x:Class="Hto3.KubernetesDefinition.UI.Views.ReplicaSetView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+        xmlns:viewModels="clr-namespace:Hto3.KubernetesDefinition.UI.ViewModels"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:common="clr-namespace:Hto3.KubernetesDefinition.UI.Common"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:Hto3.KubernetesDefinition.UI.Views"
+        xmlns:Globalization="clr-namespace:System.Globalization;assembly=mscorlib"
+        xmlns:pt="http://propertytools.org/wpf" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:b="http://schemas.microsoft.com/xaml/behaviors" xmlns:Components="clr-namespace:Hto3.KubernetesDefinition.UI.Components" xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        mc:Ignorable="d"
+        Title="Replica Set" Height="186" Width="549" ResizeMode="CanMinimize" d:DataContext="{d:DesignInstance {x:Type viewModels:ReplicaSetViewModel}}">
+    <Canvas>
+        <GroupBox Width="376" Height="143" Canvas.Left="159" Canvas.Top="14" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <GroupBox.Header>
+                <TextBlock Text="Label selector for pods" ToolTip="Map of String keys and values that can be used to organize and categorize (scope&#13;&#10;and select) objects. May match selectors of replication controllers and services.&#13;&#10;More info: http://kubernetes.io/docs/user-guide/labels" />
+            </GroupBox.Header>
+            <Components:KeyValueEditor DataContext="{Binding LabelSelectorForPods}" />
+        </GroupBox>
+        <syncfusion:UpDown Width="66" Value="{Binding Replicas}" Canvas.Left="15" Canvas.Top="41" MinValue="0" MaxValue="9999" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0" Step="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Replicas" Canvas.Left="10" Canvas.Top="10" HorizontalAlignment="Center" VerticalAlignment="Center" ToolTip="Number of desired pods. This is a pointer to distinguish between&#13;&#10;explicit zero and not specified. Defaults to 1."/>
+        <Label Content="seconds" Canvas.Left="79" Canvas.Top="105" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <syncfusion:UpDown Width="66" Value="{Binding ProgressDeadlineSeconds}" Canvas.Left="15" Canvas.Top="110" MinValue="0" MaxValue="9999" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0" Step="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label Content="Deadline before fail" Canvas.Left="10" Canvas.Top="79" HorizontalAlignment="Left" VerticalAlignment="Center" ToolTip="The maximum time in seconds for a deployment to make progress before it is considered to be&#13;&#10;failed. The deployment controller will continue to process failed deployments and a condition&#13;&#10;with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that&#13;&#10;progress will not be estimated during the time a deployment is paused. Defaults to 600s."/>
+    </Canvas>
+</common:EditorViewBaseWindow>

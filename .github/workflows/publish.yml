@@ -1,0 +1,46 @@
+name: build
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Workflow
+    runs-on: windows-2022
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+      - name: Restore Nuget
+        run: nuget restore Hto3.KubernetesDefinition.sln
+      - name: Build
+        run: MSBuild -p:Configuration=Release -p:DebugSymbols=False -p:DebugType=none -p:GenerateDocumentation=False -p:SyncfusionLicense=${{ secrets.SYNCFUSION }} -p:OutputPath=bin\Release Hto3.KubernetesDefinition.UI\Hto3.KubernetesDefinition.UI.csproj
+      - name: Remove debug symbols
+        working-directory: Hto3.KubernetesDefinition.UI\bin\Release
+        run: rm *.xml, *.pdb
+      - name: Pack
+        working-directory: Hto3.KubernetesDefinition.UI\bin\Release
+        run: 7z a -t7z -mx9 Release.7z *.config *.exe *.dll
+      - name: Define version
+        run: Get-Date -Format "VERSION=yyyy-MM-dd" >> $env:GITHUB_ENV
+      - name: Create github release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.VERSION }}
+          release_name: v${{ env.VERSION }}
+          draft: false
+          prerelease: false
+      - name: Upload release asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`.
+          asset_path: Hto3.KubernetesDefinition.UI\bin\Release\Release.7z
+          asset_name: Release.7z
+          asset_content_type: application/x-7z-compressed

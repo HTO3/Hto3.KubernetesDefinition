@@ -1,0 +1,117 @@
+﻿<common:EditorViewBaseWindow
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+             xmlns:viewModels="clr-namespace:Hto3.KubernetesDefinition.UI.ViewModels"
+             xmlns:common="clr-namespace:Hto3.KubernetesDefinition.UI.Common"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Hto3.KubernetesDefinition.UI.Views"
+             xmlns:Globalization="clr-namespace:System.Globalization;assembly=mscorlib"
+             xmlns:pt="http://propertytools.org/wpf" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:b="http://schemas.microsoft.com/xaml/behaviors" xmlns:Components="clr-namespace:Hto3.KubernetesDefinition.UI.Components" xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="Hto3.KubernetesDefinition.UI.Views.PodView"
+             mc:Ignorable="d" Height="880" Width="1309" d:DataContext="{d:DesignInstance {x:Type viewModels:PodViewModel}}" Title="Pod">
+    <Canvas>
+        <TextBox Width="120" Text="{Binding Name}" Canvas.Left="15" Canvas.Top="40"/>
+        <Label Content="Name" Canvas.Left="10" Canvas.Top="10" ToolTip="Name of the container specified as a DNS_LABEL. Each container in&#13;&#10;a pod must have a unique name (DNS_LABEL). Cannot be updated."/>
+        <Label Content="Image" Canvas.Left="10" Canvas.Top="64" ToolTip="Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images&#13;&#10;This field is optional to allow higher level config management to default or override container images&#13;&#10;in workload controllers like Deployments and StatefulSets"/>
+        <TextBox Width="327" Text="{Binding ImageName}" Canvas.Left="15" Canvas.Top="95" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <GroupBox Width="376" Height="143" Canvas.Left="398" Canvas.Top="14" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <GroupBox.Header>
+                <TextBlock Text="Exposed Ports" ToolTip="List of ports to expose from the container. Exposing a port here gives the system additional&#13;&#10;information about the network connections a container uses, but is primarily informational.&#13;&#10;Not specifying a port here DOES NOT prevent that port from being exposed. Any port which&#13;&#10;is listening on the default &quot;0.0.0.0&quot; address inside a container will be accessible from the&#13;&#10;network. Cannot be updated." />
+            </GroupBox.Header>
+            <Components:ExposePortEditor DataContext="{Binding ExposedPorts}" />
+        </GroupBox>
+        <GroupBox Height="85" Canvas.Left="10" Canvas.Top="162" Width="376" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <GroupBox.Header>
+                <TextBlock Text="Limit (max)" ToolTip="Limits describes the maximum amount of compute resources allowed. More info:&#13;&#10;https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/"/>
+            </GroupBox.Header>
+            <Canvas>
+                <CheckBox Content="% vCPU" IsChecked="{Binding CpuLimit, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Canvas.Left="10" Canvas.Top="10">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="Checked">
+                            <b:ChangePropertyAction TargetObject="{Binding Mode=OneWay}" PropertyName="CpuLimit">
+                                <b:ChangePropertyAction.Value>0</b:ChangePropertyAction.Value>
+                            </b:ChangePropertyAction>
+                        </b:EventTrigger>
+                        <b:EventTrigger EventName="Unchecked">
+                            <b:ChangePropertyAction TargetObject="{Binding Mode=OneWay}" PropertyName="CpuLimit" Value="{x:Null}"/>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </CheckBox>
+                <CheckBox Content="Memory" IsChecked="{Binding MemoryLimit, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Canvas.Left="100.812" Canvas.Top="10">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="Checked">
+                            <b:ChangePropertyAction TargetObject="{Binding Mode=OneWay}" PropertyName="MemoryLimit">
+                                <b:ChangePropertyAction.Value>0</b:ChangePropertyAction.Value>
+                            </b:ChangePropertyAction>
+                        </b:EventTrigger>
+                        <b:EventTrigger EventName="Unchecked">
+                            <b:ChangePropertyAction TargetObject="{Binding Mode=OneWay}" PropertyName="MemoryLimit" Value="{x:Null}"/>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </CheckBox>
+                <ComboBox Width="106" IsEnabled="{Binding MemoryLimit, Converter={StaticResource NullToBooleanConverter}}" ItemsSource="{Binding MemoryLimitSize, Converter={StaticResource EnumToDictionaryOptionsConverter}, Mode=OneTime}" SelectedValue="{Binding MemoryLimitSize}" SelectedValuePath="Key" DisplayMemberPath="Value" Canvas.Left="171.812" Canvas.Top="29.098"/>
+                <syncfusion:UpDown Width="66" Value="{Binding MemoryLimit}" IsEnabled="{Binding MemoryLimit, Converter={StaticResource NullToBooleanConverter}}" Canvas.Left="100.812" Canvas.Top="30.098" MinValue="0" UseNullOption="True" MaxValue="65535" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0"/>
+                <syncfusion:UpDown Width="66" Value="{Binding CpuLimit}" IsEnabled="{Binding CpuLimit, Converter={StaticResource NullToBooleanConverter}}" Canvas.Left="10" Canvas.Top="30.098" MinValue="0" UseNullOption="True" MaxValue="12800" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0" Step="10"/>
+            </Canvas>
+        </GroupBox>
+        <GroupBox Height="85" Canvas.Left="398" Canvas.Top="162" Width="376" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Requests describes the minimum amount of compute resources required. If Requests is omitted&#13;&#10;for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined&#13;&#10;value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/">
+            <GroupBox.Header>
+                <TextBlock Text="Request (min)" />
+            </GroupBox.Header>
+            <Canvas>
+                <CheckBox x:Name="checkBox" Content="% vCPU" IsChecked="{Binding CpuRequest, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Canvas.Left="10" Canvas.Top="10">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="Checked">
+                            <b:ChangePropertyAction TargetObject="{Binding Mode=OneWay}" PropertyName="CpuRequest">
+                                <b:ChangePropertyAction.Value>0</b:ChangePropertyAction.Value>
+                            </b:ChangePropertyAction>
+                        </b:EventTrigger>
+                        <b:EventTrigger EventName="Unchecked">
+                            <b:ChangePropertyAction TargetObject="{Binding Mode=OneWay}" PropertyName="CpuRequest" Value="{x:Null}"/>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </CheckBox>
+                <syncfusion:UpDown Width="66" Value="{Binding CpuRequest}" IsEnabled="{Binding CpuRequest, Converter={StaticResource NullToBooleanConverter}}" Canvas.Left="10" Canvas.Top="30.098" MinValue="0" UseNullOption="True" MaxValue="128000" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0" Step="10"/>
+                <CheckBox x:Name="checkBox1" Content="Memory" IsChecked="{Binding MemoryRequest, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Canvas.Left="100.812" Canvas.Top="9.901">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="Checked">
+                            <b:ChangePropertyAction TargetObject="{Binding Mode=OneWay}" PropertyName="MemoryRequest">
+                                <b:ChangePropertyAction.Value>0</b:ChangePropertyAction.Value>
+                            </b:ChangePropertyAction>
+                        </b:EventTrigger>
+                        <b:EventTrigger EventName="Unchecked">
+                            <b:ChangePropertyAction TargetObject="{Binding Mode=OneWay}" PropertyName="MemoryRequest" Value="{x:Null}"/>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </CheckBox>
+                <syncfusion:UpDown Width="66" Value="{Binding MemoryRequest}" IsEnabled="{Binding MemoryRequest, Converter={StaticResource NullToBooleanConverter}}" Canvas.Left="100.812" Canvas.Top="29.999" MinValue="0" UseNullOption="True" MaxValue="65535" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0"/>
+                <ComboBox Width="106" IsEnabled="{Binding MemoryRequest, Converter={StaticResource NullToBooleanConverter}}" ItemsSource="{Binding MemoryRequestSize, Converter={StaticResource EnumToDictionaryOptionsConverter}, Mode=OneTime}" SelectedValue="{Binding MemoryRequestSize}" DisplayMemberPath="Value" SelectedValuePath="Key" Canvas.Left="171.812" Canvas.Top="29.098"/>
+            </Canvas>
+        </GroupBox>
+        <GroupBox Height="170" Width="376" Canvas.Left="10" Canvas.Top="261" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <GroupBox.Header>
+                <TextBlock Text="Environment Variables" ToolTip="List of environment variables to set in the container. Cannot be updated." />
+            </GroupBox.Header>
+            <Components:KeyValueEditor DataContext="{Binding EnvironmentVariables}" />
+        </GroupBox>
+        <GroupBox Height="170" Width="376" Canvas.Left="398" Canvas.Top="261" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <GroupBox.Header>
+                <TextBlock Text="Volume Mounts" ToolTip="Pod volumes to mount into the container's filesystem. Cannot be updated." />
+            </GroupBox.Header>
+            <Components:VolumeMountEditor DataContext="{Binding VolumeMounts}" />
+        </GroupBox>
+        <GroupBox Height="417" Width="512" Canvas.Left="786" Canvas.Top="14" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <GroupBox.Header>
+                <CheckBox x:Name="ckbLivenessProbe" Content="Liveness Probe" ToolTip="Periodic probe of container liveness. Container&#13;&#10;will be restarted if the probe fails. Cannot be updated. More info:&#13;&#10;https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes" IsChecked="{Binding LivenessProbeDesired}" />
+            </GroupBox.Header>
+            <local:ProbeView IsEnabled="{Binding IsChecked, ElementName=ckbLivenessProbe}" DataContext="{Binding LivenessProbe}"/>
+        </GroupBox>
+        <GroupBox Height="417" Width="512" Canvas.Left="10" Canvas.Top="436" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <GroupBox.Header>
+                <CheckBox x:Name="ckbReadinessProbe" Content="Readiness Probe" ToolTip="Periodic probe of container service readiness. Container will be removed from service&#13;&#10;endpoints if the probe fails. Cannot be updated. More info:&#13;&#10;https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes" IsChecked="{Binding ReadinessProbeDesired}" />
+            </GroupBox.Header>
+            <local:ProbeView IsEnabled="{Binding IsChecked, ElementName=ckbReadinessProbe}" DataContext="{Binding ReadinessProbe}"/>
+        </GroupBox>
+    </Canvas>
+</common:EditorViewBaseWindow>

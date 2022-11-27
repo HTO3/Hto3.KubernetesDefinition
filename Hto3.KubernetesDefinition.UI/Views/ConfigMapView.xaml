@@ -1,0 +1,24 @@
+﻿<common:EditorViewBaseWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:common="clr-namespace:Hto3.KubernetesDefinition.UI.Common"
+        xmlns:local="clr-namespace:Hto3.KubernetesDefinition.UI.Views"
+        xmlns:viewModels="clr-namespace:Hto3.KubernetesDefinition.UI.ViewModels"
+        xmlns:Components="clr-namespace:Hto3.KubernetesDefinition.UI.Components" x:Class="Hto3.KubernetesDefinition.UI.Views.ConfigMapView"
+        mc:Ignorable="d"
+        Title="Config Map" Height="470" Width="390" d:DataContext="{d:DesignInstance {x:Type viewModels:ConfigMapViewModel}}">
+    <Canvas>
+        <TextBox Width="120" Text="{Binding Name}" Canvas.Left="15" Canvas.Top="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Name" Canvas.Left="10" Canvas.Top="10" ToolTip="Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Namespace" Canvas.Left="144" Canvas.Top="9" ToolTip="Namespace defines the space within each name must be unique. An empty namespace is&#xA;equivalent to the &quot;default&quot; namespace, but &quot;default&quot; is the canonical representation.&#xA;Not all objects are required to be scoped to a namespace - the value of this field for&#xA;those objects will be empty." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ComboBox Width="120" Text="{Binding Namespace}" Canvas.Left="149" Canvas.Top="40" IsEditable="True" Height="18" Padding="0,0,0,0" ItemsSource="{Binding LocalNamespacesList}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <GroupBox Height="196" Header="Files" Width="370" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="10" Canvas.Top="248">
+            <Components:ConfigMapFileEditor DataContext="{Binding KeyFileConfigs, Mode=OneWay}" />
+        </GroupBox>
+        <GroupBox Height="169" Width="370" Header="Key-Value Pair" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="10" Canvas.Top="74">
+            <Components:KeyValueEditor DataContext="{Binding KeyValueConfigs, Mode=OneWay}"/>
+        </GroupBox>
+    </Canvas>
+</common:EditorViewBaseWindow>

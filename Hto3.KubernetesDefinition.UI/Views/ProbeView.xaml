@@ -1,0 +1,88 @@
+﻿<views:MvxWpfView
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Hto3.KubernetesDefinition.UI.Views"
+             xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+             xmlns:viewModels="clr-namespace:Hto3.KubernetesDefinition.UI.ViewModels"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf" xmlns:Components="clr-namespace:Hto3.KubernetesDefinition.UI.Components" xmlns:b="http://schemas.microsoft.com/xaml/behaviors" x:Class="Hto3.KubernetesDefinition.UI.Views.ProbeView"
+             mc:Ignorable="d" 
+             d:DesignHeight="396" d:DesignWidth="500.751" d:DataContext="{d:DesignInstance {x:Type viewModels:ProbeViewModel}}">
+    <Canvas>
+        <GroupBox Height="132" Width="365" Canvas.Left="0" Canvas.Top="6" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <GroupBox.Header>
+                <RadioButton x:Name="rbtCommand" Content="Command" ToolTip="" IsChecked="{Binding ByCommand}" GroupName="{Binding InstanceHashCode}" />
+            </GroupBox.Header>
+            <Canvas IsEnabled="{Binding IsChecked, ElementName=rbtCommand}">
+                <Label Content="Exec" Canvas.Left="6" Canvas.Top="7" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox Canvas.Left="44" Canvas.Top="11" Width="235" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding ExecToAdd}"/>
+                <Button Content="Add" Canvas.Left="291" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding AddCommandCommand, Mode=OneWay}"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Width="327" Height="53" Canvas.Left="12" Canvas.Top="46" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ItemsControl Background="#FFE1E1E1" ItemsSource="{Binding Commands}" AlternationCount="1000">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="2" Orientation="Horizontal" Background="#FD326CE5">
+                                    <TextBlock Padding="10,4,4,4" Text="{Binding}" Foreground="White"/>
+                                    <TextBlock Margin="0,-11,0,0" Padding="0, 2" Text="X" Height="12" Width="12" TextAlignment="Center" Opacity="0.6" Foreground="White" FontSize="8" FontFamily="Arial">
+                                        <b:Interaction.Triggers>
+                                            <b:EventTrigger EventName="MouseLeftButtonUp">
+                                                <b:InvokeCommandAction Command="{Binding DataContext.RemoveCommandCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ProbeView}}}" CommandParameter="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                            </b:EventTrigger>
+                                        </b:Interaction.Triggers>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Canvas>
+        </GroupBox>
+        <GroupBox Height="180" Width="365" Canvas.Left="0" Canvas.Top="146" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <GroupBox.Header>
+                <RadioButton x:Name="rbtHttpRequest" Content="HTTP Request" ToolTip="" IsChecked="{Binding ByHttpRequest}" GroupName="{Binding InstanceHashCode}" />
+            </GroupBox.Header>
+            <Canvas IsEnabled="{Binding IsChecked, ElementName=rbtHttpRequest}">
+                <TextBox Canvas.Left="39" Canvas.Top="10" Width="181" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding RequestUrl}"/>
+                <Label Content="Url" Canvas.Left="4" Canvas.Top="6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <syncfusion:UpDown Width="66" Canvas.Left="273" Canvas.Top="10" MinValue="0" UseNullOption="True" MaxValue="65535" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0" HorizontalAlignment="Left" VerticalAlignment="Center" Value="{Binding RequestPort}"/>
+                <Label Content="Port" Canvas.Left="230" Canvas.Top="6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <GroupBox Height="122" Width="354" Canvas.Left="0" Canvas.Top="36" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <GroupBox.Header>
+                        <TextBlock Text="Custom Headers" ToolTip="" />
+                    </GroupBox.Header>
+                    <Canvas>
+                        <Components:KeyValueEditor Canvas.Left="-6" HorizontalAlignment="Center" VerticalAlignment="Center" Width="352" DataContext="{Binding CustomHeaders}"/>
+                    </Canvas>
+                </GroupBox>
+            </Canvas>
+        </GroupBox>
+        <GroupBox Height="63" Width="365" Canvas.Left="0" Canvas.Top="333" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <GroupBox.Header>
+                <RadioButton x:Name="rbtSocket" Content="TCP Socket" ToolTip="" IsChecked="{Binding ByTcpSocket}" GroupName="{Binding InstanceHashCode}" />
+            </GroupBox.Header>
+            <Canvas IsEnabled="{Binding IsChecked, ElementName=rbtSocket}">
+                <Label Content="Port" Canvas.Left="10" Canvas.Top="8" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <syncfusion:UpDown Width="82" Canvas.Left="55" Canvas.Top="11" MinValue="0" UseNullOption="True" MaxValue="65535" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0" HorizontalAlignment="Left" VerticalAlignment="Top" Value="{Binding TCPSocketPort}"/>
+            </Canvas>
+        </GroupBox>
+        <syncfusion:UpDown Width="61" Canvas.Left="381" Canvas.Top="40" MinValue="0" UseNullOption="True" MaxValue="65535" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0" HorizontalAlignment="Left" VerticalAlignment="Center" Value="{Binding InitialDelay}"/>
+        <Label Content="Initial Delay" Canvas.Left="376" Canvas.Top="10" ToolTip="Number of seconds after the container has started before liveness probes are initiated.&#13;&#10;More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <syncfusion:UpDown Width="61" Canvas.Left="381" Canvas.Top="102" MinValue="0" UseNullOption="True" MaxValue="65535" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0" HorizontalAlignment="Center" VerticalAlignment="Top" Value="{Binding Interval}"/>
+        <Label Content="Interval" Canvas.Left="376" Canvas.Top="72" ToolTip="How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1." HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <syncfusion:UpDown Width="61" Canvas.Left="381" Canvas.Top="226" MinValue="0" UseNullOption="True" MaxValue="65535" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0" HorizontalAlignment="Center" VerticalAlignment="Top" Value="{Binding SucessThreshold}"/>
+        <Label Content="Success Threshold" Canvas.Left="376" Canvas.Top="200" ToolTip="Minimum consecutive successes for the probe to be considered successful after&#13;&#10;having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1." HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <syncfusion:UpDown Width="61" Canvas.Left="381" Canvas.Top="288" MinValue="0" UseNullOption="True" MaxValue="65535" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0" HorizontalAlignment="Center" VerticalAlignment="Top" Value="{Binding FailureThreshold}"/>
+        <Label Content="Failure Threshold" Canvas.Left="376" Canvas.Top="262" ToolTip="Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1." HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <syncfusion:UpDown Width="61" Canvas.Left="381" Canvas.Top="164" MinValue="0" UseNullOption="True" MaxValue="65535" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0" HorizontalAlignment="Center" VerticalAlignment="Top" Value="{Binding Timeout}"/>
+        <Label Content="Timeout" Canvas.Left="376" Canvas.Top="136" ToolTip="Number of seconds after which the probe times out. Defaults to 1 second.&#13;&#10;Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label Canvas.Left="442" Content="seconds" Canvas.Top="37" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label Canvas.Left="442" Canvas.Top="99" Content="seconds" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label Canvas.Left="442" Canvas.Top="161" Content="seconds" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+    </Canvas>
+</views:MvxWpfView>
