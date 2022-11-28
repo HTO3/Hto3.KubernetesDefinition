@@ -1,5 +1,5 @@
 # define name of installer
-OutFile "installer.exe"
+OutFile "Installer.exe"
 
 # define installation directory
 InstallDir "$PROFILE\AppData\Local\Programs\Kubernetes Definition"
@@ -19,7 +19,7 @@ Section
     file *.dll
 
     # create the uninstaller
-    WriteUninstaller "$INSTDIR\uninstall.exe"
+    WriteUninstaller "$INSTDIR\Uninstall.exe"
 
     # create a shortcut
     CreateShortcut "$SMPROGRAMS\Kubernetes Definition.lnk" "$INSTDIR\Hto3.KubernetesDefinition.UI.exe"
