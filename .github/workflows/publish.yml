@@ -24,7 +24,9 @@ jobs:
         run: 7z a -t7z -mx9 Release.7z *.config *.exe *.dll
       - name: Pack Installer
         working-directory: Hto3.KubernetesDefinition.UI\bin\Release
-        run: makensis /V4 ..\..\..\installer.nsi
+        run: |
+          dir
+          makensis /V4 ..\..\..\installer.nsi
       - name: Define version
         run: Get-Date -Format "VERSION=yyyy-MM-dd" >> $env:GITHUB_ENV
       - name: Create github release
