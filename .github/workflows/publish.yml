@@ -37,4 +37,4 @@ jobs:
           prerelease: false
           files: |
             Hto3.KubernetesDefinition.UI\bin\Release\Release.7z
-            Installer.exe
+            Hto3.KubernetesDefinition.UI\bin\Release\Installer.exe
