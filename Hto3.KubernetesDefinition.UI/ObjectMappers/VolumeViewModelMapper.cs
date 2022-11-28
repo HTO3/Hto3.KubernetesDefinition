@@ -3,6 +3,7 @@ using Hto3.KubernetesDefinition.Models;
 using Hto3.KubernetesDefinition.Models.KubernetesObjects;
 using Hto3.KubernetesDefinition.UI.Common;
 using Hto3.KubernetesDefinition.UI.ViewModels;
+using Hto3.StringHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,10 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMappers
                 case VolumeType.downwardAPI:
                     break;
                 case VolumeType.emptyDir:
+                    volume.EmptyDir = new EmptyDirVolumeSource();
+                    volume.EmptyDir.Medium = source.EmptyDir.MediumType == Medium.Memory ? "Memory" : String.Empty;
+                    if (source.EmptyDir.SizeLimit.HasValue)
+                        volume.EmptyDir.SizeLimit = $"{source.EmptyDir.SizeLimit}{source.EmptyDir.SizeLimitSize}".TrimEnd('b');
                     break;
                 case VolumeType.fc:
                     break;
@@ -111,7 +116,24 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMappers
             else if (source.DownwardAPI != null)
                 target.DesiredVolumeType = VolumeType.downwardAPI;
             else if (source.EmptyDir != null)
+            {
                 target.DesiredVolumeType = VolumeType.emptyDir;
+                target.EmptyDir.Clear();
+                if (source.EmptyDir.Medium == "Memory")
+                    target.EmptyDir.MediumType = Medium.Memory;
+                if (!String.IsNullOrEmpty(source.EmptyDir.SizeLimit))
+                {
+                    var memoryNumbersOnly = source.EmptyDir.SizeLimit.NumbersOnly();
+                    var memoryLettersOnly = source.EmptyDir.SizeLimit.LettersOnly();
+
+                    if (String.IsNullOrEmpty(memoryLettersOnly))
+                        target.EmptyDir.SizeLimitSize = MemorySize.b;
+                    else
+                        target.EmptyDir.SizeLimitSize = (MemorySize)Enum.Parse(typeof(MemorySize), memoryLettersOnly);
+
+                    target.EmptyDir.SizeLimit = Decimal.Parse(memoryNumbersOnly);
+                }
+            }
             else if (source.Fc != null)
                 target.DesiredVolumeType = VolumeType.fc;
             else if (source.GcePersistentDisk != null)
