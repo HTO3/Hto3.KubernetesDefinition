@@ -50,6 +50,7 @@
     <Compile Include="Contracts\ISaveService.cs" />
     <Compile Include="HostPathType.cs" />
     <Compile Include="KubernetesObjects\SetOfClasses.cs" />
+    <Compile Include="Medium.cs" />
     <Compile Include="MemorySize.cs" />
     <Compile Include="OccurrencesDetail.cs" />
     <Compile Include="PolicySummaryInfo.cs" />
