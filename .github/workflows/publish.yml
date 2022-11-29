@@ -21,19 +21,19 @@ jobs:
       - name: Build
         run: MSBuild -p:Configuration=Release -p:DebugSymbols=False -p:DebugType=none -p:GenerateDocumentation=False -p:SyncfusionLicense=${{ secrets.SYNCFUSION }} -p:OutputPath=bin\Release Hto3.KubernetesDefinition.UI\Hto3.KubernetesDefinition.UI.csproj
       - name: Remove debug symbols
-        working-directory: $OUTPUT_BIN_PATH
+        working-directory: ${{ env.OUTPUT_BIN_PATH }}
         run: rm *.xml, *.pdb
       - name: Pack Portable
-        working-directory: $OUTPUT_BIN_PATH
+        working-directory: ${{ env.OUTPUT_BIN_PATH }}
         run: 7z a -t7z -mx9 Release.7z *.config *.exe *.dll
       - name: Pack Installer
         run: |
-          copy installer.nsi $OUTPUT_BIN_PATH\installer.nsi
-          makensis /V4 $OUTPUT_BIN_PATH\installer.nsi
+          copy installer.nsi ${{ env.OUTPUT_BIN_PATH }}\installer.nsi
+          makensis /V4 ${{ env.OUTPUT_BIN_PATH }}\installer.nsi
       - name: Define version
         run: Get-Date -Format "VERSION=yyyy-MM-dd" >> $env:GITHUB_ENV
       - name: Create github release
-        working-directory: $OUTPUT_BIN_PATH
+        working-directory: ${{ env.OUTPUT_BIN_PATH }}
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
