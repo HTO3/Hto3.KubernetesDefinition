@@ -23,9 +23,12 @@ jobs:
       - name: Remove debug symbols
         working-directory: ${{ env.OUTPUT_BIN_PATH }}
         run: rm *.xml, *.pdb
-      - name: Pack Portable
+      - name: Pack Portable 7z
         working-directory: ${{ env.OUTPUT_BIN_PATH }}
-        run: 7z a -t7z -mx9 Release.7z *.config *.exe *.dll
+        run: 7z a -t7z -mx9 Portable.7z *.config *.exe *.dll
+      - name: Pack Portable zip
+        working-directory: ${{ env.OUTPUT_BIN_PATH }}
+        run: 7z a -tzip -mx9 Portable.zip *.config *.exe *.dll
       - name: Pack Installer
         run: |
           copy installer.nsi ${{ env.OUTPUT_BIN_PATH }}\installer.nsi
@@ -41,5 +44,6 @@ jobs:
           prerelease: false
           fail_on_unmatched_files: true
           files: |
-            ${{ env.OUTPUT_BIN_PATH }}\Release.7z
+            ${{ env.OUTPUT_BIN_PATH }}\Portable.7z
+            ${{ env.OUTPUT_BIN_PATH }}\Portable.zip
             ${{ env.OUTPUT_BIN_PATH }}\Installer.exe
