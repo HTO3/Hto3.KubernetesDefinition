@@ -33,7 +33,7 @@ jobs:
       - name: Define version
         run: Get-Date -Format "VERSION=yyyy-MM-dd" >> $env:GITHUB_ENV
       - name: Create github release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v0.1.13
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: v${{ env.VERSION }}
