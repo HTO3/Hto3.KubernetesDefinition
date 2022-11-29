@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - master
+
+env:
+  OUTPUT_BIN_PATH: Hto3.KubernetesDefinition.UI\bin\Release
+
 jobs:
   build:
     name: Workflow
@@ -17,24 +21,26 @@ jobs:
       - name: Build
         run: MSBuild -p:Configuration=Release -p:DebugSymbols=False -p:DebugType=none -p:GenerateDocumentation=False -p:SyncfusionLicense=${{ secrets.SYNCFUSION }} -p:OutputPath=bin\Release Hto3.KubernetesDefinition.UI\Hto3.KubernetesDefinition.UI.csproj
       - name: Remove debug symbols
-        working-directory: Hto3.KubernetesDefinition.UI\bin\Release
+        working-directory: $OUTPUT_BIN_PATH
         run: rm *.xml, *.pdb
       - name: Pack Portable
-        working-directory: Hto3.KubernetesDefinition.UI\bin\Release
+        working-directory: $OUTPUT_BIN_PATH
         run: 7z a -t7z -mx9 Release.7z *.config *.exe *.dll
       - name: Pack Installer
         run: |
-          copy installer.nsi Hto3.KubernetesDefinition.UI\bin\Release\installer.nsi
-          makensis /V4 Hto3.KubernetesDefinition.UI\bin\Release\installer.nsi
+          copy installer.nsi $OUTPUT_BIN_PATH\installer.nsi
+          makensis /V4 $OUTPUT_BIN_PATH\installer.nsi
       - name: Define version
         run: Get-Date -Format "VERSION=yyyy-MM-dd" >> $env:GITHUB_ENV
       - name: Create github release
+        working-directory: $OUTPUT_BIN_PATH
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: v${{ env.VERSION }}
           draft: false
           prerelease: false
+          fail_on_unmatched_files: true
           files: |
-            Hto3.KubernetesDefinition.UI\bin\Release\Release.7z
-            Hto3.KubernetesDefinition.UI\bin\Release\Installer.exe
+            Release.7z
+            Installer.exe
