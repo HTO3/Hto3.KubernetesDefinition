@@ -33,7 +33,6 @@ jobs:
       - name: Define version
         run: Get-Date -Format "VERSION=yyyy-MM-dd" >> $env:GITHUB_ENV
       - name: Create github release
-        working-directory: ${{ env.OUTPUT_BIN_PATH }}
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -42,5 +41,5 @@ jobs:
           prerelease: false
           fail_on_unmatched_files: true
           files: |
-            Release.7z
-            Installer.exe
+            ${{ env.OUTPUT_BIN_PATH }}\Release.7z
+            ${{ env.OUTPUT_BIN_PATH }}\Installer.exe
