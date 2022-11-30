@@ -15,16 +15,26 @@ namespace Hto3.KubernetesDefinition.UI.Common
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
+
             FixWindowSize();
             SetDefaultStyle();
-            SetWin32NativeActions();
 
+            base.DataContextChanged += EditorViewBaseWindow_DataContextChanged;
             this.Closed += EditorViewBaseWindow_Closed;
+        }
+
+        private void EditorViewBaseWindow_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue == null || !(e.NewValue is EditorViewModel))
+                return;
+            
+            SetWin32NativeActions();
         }
 
         private void EditorViewBaseWindow_Closed(object sender, EventArgs e)
         {
             UnsetWin32NativeActions();
+            base.DataContextChanged -= EditorViewBaseWindow_DataContextChanged;
             this.Closed -= EditorViewBaseWindow_Closed;
         }
 
@@ -41,20 +51,14 @@ namespace Hto3.KubernetesDefinition.UI.Common
 
         private void UnsetWin32NativeActions()
         {
-            var dataContext = this.DataContext as EditorViewModel;
-            if (dataContext == null)
-                return;
-
-            dataContext.ActivateEditorView = null;
+            var viewModel = (EditorViewModel)this.DataContext;
+            viewModel.ActivateEditorView = null;
         }
 
         private void SetWin32NativeActions()
         {
-            var dataContext = this.DataContext as EditorViewModel;
-            if (dataContext == null)
-                return;
-
-            dataContext.ActivateEditorView = () =>
+            var viewModel = (EditorViewModel)this.DataContext;
+            viewModel.ActivateEditorView = () =>
             {
                 if (this.WindowState == WindowState.Minimized)
                     this.WindowState = WindowState.Normal;

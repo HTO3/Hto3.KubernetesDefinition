@@ -10,6 +10,7 @@ namespace Hto3.KubernetesDefinition.Models.Contracts
     public interface IObjectGraph
     {
         Object KubernetesDataObject { get; set; }
+        IObjectMetadata Metadata { get; }
         ICollection<IObjectGraph> ChildrenKubernetesDataObjects { get; }
         void ResolveKubernetesObjectChildren();
         void ResolveVisualizationChildren();

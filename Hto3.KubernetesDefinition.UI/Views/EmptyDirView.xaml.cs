@@ -1,4 +1,5 @@
-﻿using Hto3.KubernetesDefinition.UI.ViewModels;
+﻿using Hto3.KubernetesDefinition.UI.Common;
+using Hto3.KubernetesDefinition.UI.ViewModels;
 using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.Presenters;
@@ -21,9 +22,7 @@ using System.Windows.Shapes;
 
 namespace Hto3.KubernetesDefinition.UI.Views
 {
-    [MvxContentPresentation]
-    [MvxViewFor(typeof(EmptyDirViewModel))]
-    public partial class EmptyDirView : MvxWpfView
+    public partial class EmptyDirView : EditorViewBaseUserControl
     {
         public EmptyDirView()
         {

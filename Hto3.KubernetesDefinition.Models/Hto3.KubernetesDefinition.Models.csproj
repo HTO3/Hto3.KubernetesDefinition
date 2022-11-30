@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IKindResolverService.cs" />
+    <Compile Include="Contracts\IObjectMetadata.cs" />
     <Compile Include="Contracts\IValidationService.cs" />
     <Compile Include="EvaluationSummaryInfo.cs" />
     <Compile Include="Contracts\IObjectGraph.cs" />

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hto3.KubernetesDefinition.UI.ObjectMetadata
 {
-    public class NamespaceMetadata : IObjectMetadata
+    public class NamespaceMetadata : IObjectMetadataUI
     {
         public String EditorPath => "/Views/NamespaceView";
         public String IconName => "ns.svg";
@@ -16,5 +16,6 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMetadata
         public String Description => "Namespace provides a scope for Names. Use of multiple namespaces is optional.";
         public Type KubernetesObjectType => typeof(Models.KubernetesObjects.Namespace);
         public Type ManagerType => typeof(NamespaceObjectManagerViewModel);
+        public Boolean Unique => false;
     }
 }

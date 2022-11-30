@@ -151,6 +151,7 @@
     <Compile Include="Common\ConfigMapVolumeItem.cs" />
     <Compile Include="Common\ConfigurationAttribute.cs" />
     <Compile Include="Common\DummyKubernetesObject.cs" />
+    <Compile Include="Common\EditorViewBaseUserControl.cs" />
     <Compile Include="Common\EditorViewBaseWindow.cs" />
     <Compile Include="Common\ExtensionMethods.cs" />
     <Compile Include="Common\IClearableViewModel.cs" />

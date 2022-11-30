@@ -17,5 +17,6 @@ namespace Hto3.KubernetesDefinition.UI.Common
         public ICommand ExecuteCommand { get; set; }
         public Type ManagerType { get; set; }
         public Type KubernetesObjectType { get; set; }
+        public Boolean UniqueChild { get; set; }
     }
 }

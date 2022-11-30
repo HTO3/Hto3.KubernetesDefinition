@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hto3.KubernetesDefinition.UI.ObjectMetadata
 {
-    public class ReplicaSetMetadata : IObjectMetadata
+    public class ReplicaSetMetadata : IObjectMetadataUI
     {
         public string EditorPath => "/Views/ReplicaSetView";
         public string IconName => "rs.svg";
@@ -16,5 +16,6 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMetadata
         public string Description => "The specification of the desired behavior of the Deployment.";
         public Type KubernetesObjectType => typeof(Models.KubernetesObjects.DeploymentSpec);
         public Type ManagerType => typeof(ReplicaSetObjectManagerViewModel);
+        public Boolean Unique => true;
     }
 }

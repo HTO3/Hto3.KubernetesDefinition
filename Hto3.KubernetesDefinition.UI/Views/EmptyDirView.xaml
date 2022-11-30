@@ -1,8 +1,9 @@
-﻿<views:MvxWpfView
+﻿<common:EditorViewBaseUserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:common="clr-namespace:Hto3.KubernetesDefinition.UI.Common"
              xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
              xmlns:viewModels="clr-namespace:Hto3.KubernetesDefinition.UI.ViewModels"
              xmlns:local="clr-namespace:Hto3.KubernetesDefinition.UI.Views"
@@ -33,4 +34,4 @@
         <ComboBox Width="121" IsEnabled="{Binding SizeLimit, Converter={StaticResource NullToBooleanConverter}}" ItemsSource="{Binding SizeLimitSize, Converter={StaticResource EnumToDictionaryOptionsConverter}, Mode=OneTime}" SelectedValue="{Binding SizeLimitSize}" SelectedValuePath="Key" DisplayMemberPath="Value" Canvas.Left="86" Canvas.Top="100" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <syncfusion:UpDown Width="66" Value="{Binding SizeLimit}" IsEnabled="{Binding SizeLimit, Converter={StaticResource NullToBooleanConverter}}" Canvas.Left="15" Canvas.Top="101" MinValue="0" UseNullOption="True" MaxValue="65535" ZeroColor="{Binding Foreground, RelativeSource={RelativeSource Self}}" NumberDecimalDigits="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
     </Canvas>
-</views:MvxWpfView>
+</common:EditorViewBaseUserControl>

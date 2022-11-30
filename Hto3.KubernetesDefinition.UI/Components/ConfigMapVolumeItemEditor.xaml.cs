@@ -36,7 +36,8 @@ namespace Hto3.KubernetesDefinition.UI.Components
             set { SetValue(KeysProperty, value); }
         }
 
-        public static readonly DependencyProperty KeysProperty = DependencyProperty.Register("Keys", typeof(IEnumerable), typeof(ConfigMapVolumeItemEditor), new PropertyMetadata(null));
+        public static readonly DependencyProperty KeysProperty =
+            DependencyProperty.Register("Keys", typeof(IEnumerable), typeof(ConfigMapVolumeItemEditor), new PropertyMetadata(null));
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {

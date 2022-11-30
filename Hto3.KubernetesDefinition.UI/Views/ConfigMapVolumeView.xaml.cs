@@ -1,4 +1,5 @@
-﻿using MvvmCross.Platforms.Wpf.Views;
+﻿using Hto3.KubernetesDefinition.UI.Common;
+using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -21,15 +22,11 @@ namespace Hto3.KubernetesDefinition.UI.Views
     /// <summary>
     /// Interaction logic for ConfigMapVolumeView.xaml
     /// </summary>
-    public partial class ConfigMapVolumeView : MvxWpfView
+    public partial class ConfigMapVolumeView : EditorViewBaseUserControl
     {
         public ConfigMapVolumeView()
         {
-            InitializeComponent();
-            DataContextChanged += new DependencyPropertyChangedEventHandler((sender, e) =>
-            {
-                this.ViewModel = (IMvxViewModel)e.NewValue;
-            });            
+            InitializeComponent();            
         }        
     }
 }

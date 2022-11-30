@@ -36,9 +36,11 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
         }
 
         public Object KubernetesDataObject { get; set; }
-        public IObjectMetadata Metadata { get; protected set; }
+        public IObjectMetadataUI Metadata { get; protected set; }
+        IObjectMetadata IObjectGraph.Metadata => this.Metadata;
         public ICollection<IObjectGraph> ChildrenKubernetesDataObjects { get; }
         public MvxObservableCollection<ExecuteContextMenuOption> OptionsToExecute { get; }
+        public Action<String> ShowWaningDialog { get; set; }
 
         public MvxAsyncCommand EditCommand => new MvxAsyncCommand(async () =>
         {
@@ -54,9 +56,21 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
             this.messenger.Publish(message);
         });
 
-        public MvxCommand<ExecuteContextMenuOption> AddCommand => new MvxCommand<ExecuteContextMenuOption>((item) =>
+        public MvxCommand<ExecuteContextMenuOption> AddCommand => new MvxCommand<ExecuteContextMenuOption>((executeContext) =>
         {
-            var newObject = (IObjectGraph)this.loader.LoadViewModel(new MvxViewModelInstanceRequest(item.ManagerType), null);
+            var mustBeUnique =
+                executeContext.UniqueChild
+                &&
+                this.ChildrenKubernetesDataObjects
+                    .Any(c => c.Metadata.KubernetesObjectType == executeContext.KubernetesObjectType);
+
+            if (mustBeUnique)
+            {
+                this.ShowWaningDialog?.Invoke($"You can't \"{executeContext.Name}\" because it needs to be unique.");
+                return;
+            }
+
+            var newObject = (IObjectGraph)this.loader.LoadViewModel(new MvxViewModelRequest(executeContext.ManagerType), null);
             this.ChildrenKubernetesDataObjects.Add(newObject);
         });
 
@@ -74,9 +88,9 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
         {
         }
 
-        public ExecuteContextMenuOption CreateAddMenuOption<T>() where T : IObjectMetadata, new()
+        public ExecuteContextMenuOption CreateAddMenuOption<T>() where T : IObjectMetadataUI, new()
         {
-            var instance = (IObjectMetadata)Activator.CreateInstance(typeof(T));
+            var instance = (IObjectMetadataUI)Activator.CreateInstance(typeof(T));
 
             return new ExecuteContextMenuOption()
             {
@@ -84,7 +98,8 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
                 IconName = instance.IconName,
                 ExecuteCommand = this.AddCommand,
                 ManagerType = instance.ManagerType,
-                KubernetesObjectType = instance.KubernetesObjectType
+                KubernetesObjectType = instance.KubernetesObjectType,
+                UniqueChild = instance.Unique
             };
         }
 

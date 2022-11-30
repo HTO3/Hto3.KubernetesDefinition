@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hto3.KubernetesDefinition.UI.ObjectMetadata
 {
-    public class DeploymentMetadata : IObjectMetadata
+    public class DeploymentMetadata : IObjectMetadataUI
     {
         public String EditorPath => "/Views/DeploymentView";
         public String IconName => "deploy.svg";
@@ -16,5 +16,6 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMetadata
         public String Description => "Deployment enables declarative updates for Pods and ReplicaSets.";
         public Type KubernetesObjectType => typeof(Models.KubernetesObjects.Deployment);
         public Type ManagerType => typeof(DeploymentObjectManagerViewModel);
+        public Boolean Unique => false;
     }
 }

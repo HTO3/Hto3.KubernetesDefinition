@@ -1,4 +1,5 @@
-﻿using Hto3.KubernetesDefinition.UI.ViewModels;
+﻿using Hto3.KubernetesDefinition.UI.Common;
+using Hto3.KubernetesDefinition.UI.ViewModels;
 using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
@@ -20,12 +21,7 @@ using System.Windows.Shapes;
 
 namespace Hto3.KubernetesDefinition.UI.Views
 {
-    /// <summary>
-    /// Interaction logic for ObjectGrouper.xaml
-    /// </summary>
-    [MvxContentPresentation]
-    [MvxViewFor(typeof(ObjectManagerViewModel))]
-    public partial class ObjectManagerView : MvxWpfView
+    public partial class ObjectManagerView : EditorViewBaseUserControl
     {
         public ObjectManagerView()
         {
@@ -37,6 +33,9 @@ namespace Hto3.KubernetesDefinition.UI.Views
             //Programatically set binding instead in XAML to avoid Visual Studio XDesProc.exe bug infinite loop
             if (!DesignerProperties.GetIsInDesignMode(this))
                 this.InnerItens_ItemsControl.SetBinding(ItemsControl.ItemsSourceProperty, new Binding("ChildrenKubernetesDataObjects"));
+
+            var viewModel = (ObjectManagerViewModel)this.DataContext;
+            viewModel.ShowWaningDialog = new Action<string>(text => MessageBox.Show(text, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation));
         }
 
         public Orientation InnerElementsOrientation

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hto3.KubernetesDefinition.UI.ObjectMetadata
 {
-    public class PodMetadata : IObjectMetadata
+    public class PodMetadata : IObjectMetadataUI
     {
         public String EditorPath => "/Views/PodView";
         public String IconName => "pod.svg";
@@ -16,5 +16,6 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMetadata
         public String Description => "A single application container that you want to run within a pod.";
         public Type KubernetesObjectType => typeof(Models.KubernetesObjects.Container);
         public Type ManagerType => typeof(PodObjectManagerViewModel);
+        public Boolean Unique => false;
     }
 }

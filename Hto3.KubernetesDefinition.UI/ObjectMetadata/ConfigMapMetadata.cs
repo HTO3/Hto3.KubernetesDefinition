@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hto3.KubernetesDefinition.UI.ObjectMetadata
 {
-    public class ConfigMapMetadata : IObjectMetadata
+    public class ConfigMapMetadata : IObjectMetadataUI
     {
         public String EditorPath => "/Views/ConfigMapView";
         public String IconName => "cm.svg";
@@ -16,5 +16,6 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMetadata
         public String Description => "ConfigMap holds configuration data for pods to consume.";
         public Type KubernetesObjectType => typeof(Models.KubernetesObjects.ConfigMap);
         public Type ManagerType => typeof(ConfigMapObjectManagerViewModel);
+        public Boolean Unique => false;
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Hto3.KubernetesDefinition.UI.ObjectMetadata
 {
-    public class CronJobMetadata : IObjectMetadata
+    public class CronJobMetadata : IObjectMetadataUI
     {
         public String EditorPath => "/Views/CronJobView";
         public String IconName => "cronjob.svg";
@@ -17,5 +17,6 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMetadata
         public String Description => "CronJob represents the configuration of a single cron job.";
         public Type KubernetesObjectType => typeof(Models.KubernetesObjects.CronJob);
         public Type ManagerType => typeof(CronJobObjectManagerViewModel);
+        public Boolean Unique => false;
     }
 }

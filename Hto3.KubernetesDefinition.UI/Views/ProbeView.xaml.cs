@@ -1,4 +1,5 @@
-﻿using Hto3.KubernetesDefinition.UI.ViewModels;
+﻿using Hto3.KubernetesDefinition.UI.Common;
+using Hto3.KubernetesDefinition.UI.ViewModels;
 using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
@@ -22,9 +23,7 @@ namespace Hto3.KubernetesDefinition.UI.Views
     /// <summary>
     /// Interaction logic for ProbeView.xaml
     /// </summary>
-    [MvxContentPresentation]
-    [MvxViewFor(typeof(ProbeViewModel))]
-    public partial class ProbeView : MvxWpfView
+    public partial class ProbeView : EditorViewBaseUserControl
     {
         public ProbeView()
         {
