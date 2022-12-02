@@ -183,7 +183,7 @@
     <Compile Include="ObjectMetadata\CronJobMetadata.cs" />
     <Compile Include="ObjectMetadata\DeploymentMetadata.cs" />
     <Compile Include="ObjectMetadata\NamespaceMetadata.cs" />
-    <Compile Include="ObjectMetadata\PodMetadata.cs" />
+    <Compile Include="ObjectMetadata\ContainerMetadata.cs" />
     <Compile Include="ObjectMetadata\ReplicaSetMetadata.cs" />
     <Compile Include="ObjectMetadata\ServiceMetadata.cs" />
     <Compile Include="ObjectMetadata\VolumeMetadata.cs" />
@@ -214,7 +214,7 @@
     <Compile Include="Messages\NamespacesSignalMessage.cs" />
     <Compile Include="ObjectMappers\DeploymentViewModelMapper.cs" />
     <Compile Include="ObjectMappers\NamespaceViewModelMapper.cs" />
-    <Compile Include="ObjectMappers\PodViewModelMapper.cs" />
+    <Compile Include="ObjectMappers\ContainerViewModelMapper.cs" />
     <Compile Include="ObjectMappers\ReplicaSetViewModelMapper.cs" />
     <Compile Include="ObjectMappers\ServiceViewModelMapper.cs" />
     <Compile Include="ObjectMappers\VolumeViewModelMapper.cs" />
@@ -262,8 +262,8 @@
     <Compile Include="Views\NamespaceView.xaml.cs">
       <DependentUpon>NamespaceView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PodView.xaml.cs">
-      <DependentUpon>PodView.xaml</DependentUpon>
+    <Compile Include="Views\ContainerView.xaml.cs">
+      <DependentUpon>ContainerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ObjectManagerView.xaml.cs">
       <DependentUpon>ObjectManagerView.xaml</DependentUpon>
@@ -343,7 +343,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PodView.xaml">
+    <Page Include="Views\ContainerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -452,6 +452,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Gliphs\cm.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Gliphs\ctn.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

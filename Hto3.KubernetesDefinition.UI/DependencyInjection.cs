@@ -28,7 +28,7 @@ namespace Hto3.KubernetesDefinition.UI
             Mvx.IoCProvider.RegisterType<IAnalyzeService, AnalyzeService>();
             Mvx.IoCProvider.RegisterType<IViewModelMapper<Deployment, DeploymentViewModel>, DeploymentViewModelMapper>();
             Mvx.IoCProvider.RegisterType<IViewModelMapper<Namespace, NamespaceViewModel>, NamespaceViewModelMapper>();
-            Mvx.IoCProvider.RegisterType<IViewModelMapper<Container, PodViewModel>, PodViewModelMapper>();
+            Mvx.IoCProvider.RegisterType<IViewModelMapper<Container, ContainerViewModel>, ContainerViewModelMapper>();
             Mvx.IoCProvider.RegisterType<IViewModelMapper<DeploymentSpec, ReplicaSetViewModel>, ReplicaSetViewModelMapper>();
             Mvx.IoCProvider.RegisterType<IViewModelMapper<Volume, VolumeViewModel>, VolumeViewModelMapper>();
             Mvx.IoCProvider.RegisterType<IViewModelMapper<Service, ServiceViewModel>, ServiceViewModelMapper>();

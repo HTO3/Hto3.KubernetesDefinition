@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace Hto3.KubernetesDefinition.UI.ViewModels
 {
-    public class PodObjectManagerViewModel : ObjectManagerViewModel
+    public class ContainerObjectManagerViewModel : ObjectManagerViewModel
     {
-        public PodObjectManagerViewModel(IMvxNavigationService navigationService, IMvxViewModelLoader loader, IMvxMessenger messenger)
+        public ContainerObjectManagerViewModel(IMvxNavigationService navigationService, IMvxViewModelLoader loader, IMvxMessenger messenger)
             : base(navigationService, loader, messenger)
         {
-            base.Metadata = new PodMetadata();
+            base.Metadata = new ContainerMetadata();
         }
     }
 }

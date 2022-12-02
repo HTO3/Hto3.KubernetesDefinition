@@ -13,12 +13,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-[assembly: MvxNavigation(typeof(PodViewModel), "/Views/PodView")]
+[assembly: MvxNavigation(typeof(ContainerViewModel), "/Views/ContainerView")]
 namespace Hto3.KubernetesDefinition.UI.ViewModels
 {
-    public class PodViewModel : EditorViewModel
+    public class ContainerViewModel : EditorViewModel
     {
-        public PodViewModel(IMvxNavigationService navigationService, IViewModelMapper<Container, PodViewModel> viewModelMapper, IMvxMessenger messenger)
+        public ContainerViewModel(IMvxNavigationService navigationService, IViewModelMapper<Container, ContainerViewModel> viewModelMapper, IMvxMessenger messenger)
             : base(navigationService, viewModelMapper, messenger)
         {
             this.ExposedPorts = new MvxObservableCollection<Tuple<Int32, String>>();

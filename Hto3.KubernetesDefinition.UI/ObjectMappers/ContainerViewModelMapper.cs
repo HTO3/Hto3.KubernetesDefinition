@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 
 namespace Hto3.KubernetesDefinition.UI.ObjectMappers
 {
-    public class PodViewModelMapper : IViewModelMapper<Container, PodViewModel>
+    public class ContainerViewModelMapper : IViewModelMapper<Container, ContainerViewModel>
     {
-        public Container ConvertBack(PodViewModel source)
+        public Container ConvertBack(ContainerViewModel source)
         {
             var container = new Container();
             container.Image = source.ImageName;
@@ -114,7 +114,7 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMappers
             return container;
         }
 
-        public void Fill(Container source, PodViewModel target)
+        public void Fill(Container source, ContainerViewModel target)
         {
             target.ImageName = source.Image;
             target.Name = source.Name;
@@ -221,7 +221,7 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMappers
             target.ReadinessProbeDesired = probeSetter(source.ReadinessProbe, target.ReadinessProbe);
         }
 
-        public Object ConvertBack(Object source) => ConvertBack((PodViewModel)source);
-        public void Fill(Object source, Object target) => Fill((Container)source, (PodViewModel)target);
+        public Object ConvertBack(Object source) => ConvertBack((ContainerViewModel)source);
+        public void Fill(Object source, Object target) => Fill((Container)source, (ContainerViewModel)target);
     }
 }

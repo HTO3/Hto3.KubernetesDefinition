@@ -28,7 +28,7 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
             base.Prepare();
 
             base.OptionsToExecute.Add(null);
-            base.OptionsToExecute.Add(base.CreateAddMenuOption<PodMetadata>());
+            base.OptionsToExecute.Add(base.CreateAddMenuOption<ContainerMetadata>());
             base.OptionsToExecute.Add(base.CreateAddMenuOption<VolumeMetadata>());
         }
 

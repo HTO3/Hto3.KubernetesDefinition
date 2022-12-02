@@ -8,8 +8,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Hto3.KubernetesDefinition.UI.Views"
              xmlns:Globalization="clr-namespace:System.Globalization;assembly=mscorlib"
-             xmlns:pt="http://propertytools.org/wpf" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:b="http://schemas.microsoft.com/xaml/behaviors" xmlns:Components="clr-namespace:Hto3.KubernetesDefinition.UI.Components" xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="Hto3.KubernetesDefinition.UI.Views.PodView"
-             mc:Ignorable="d" Height="880" Width="1309" d:DataContext="{d:DesignInstance {x:Type viewModels:PodViewModel}}" Title="Pod">
+             xmlns:pt="http://propertytools.org/wpf" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:b="http://schemas.microsoft.com/xaml/behaviors" xmlns:Components="clr-namespace:Hto3.KubernetesDefinition.UI.Components" xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="Hto3.KubernetesDefinition.UI.Views.ContainerView"
+             mc:Ignorable="d" Height="880" Width="1309" d:DataContext="{d:DesignInstance {x:Type viewModels:ContainerViewModel}}" Title="Container">
     <Canvas>
         <TextBox Width="120" Text="{Binding Name}" Canvas.Left="15" Canvas.Top="40"/>
         <Label Content="Name" Canvas.Left="10" Canvas.Top="10" ToolTip="Name of the container specified as a DNS_LABEL. Each container in&#13;&#10;a pod must have a unique name (DNS_LABEL). Cannot be updated."/>

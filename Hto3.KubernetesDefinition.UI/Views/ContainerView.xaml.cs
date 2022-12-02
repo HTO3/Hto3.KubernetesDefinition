@@ -24,10 +24,10 @@ namespace Hto3.KubernetesDefinition.UI.Views
     /// Interaction logic for ContainerView.xaml
     /// </summary>
     [MvxWindowPresentation]
-    [MvxViewFor(typeof(PodViewModel))]
-    public partial class PodView : EditorViewBaseWindow
+    [MvxViewFor(typeof(ContainerViewModel))]
+    public partial class ContainerView : EditorViewBaseWindow
     {
-        public PodView()
+        public ContainerView()
         {
             InitializeComponent();
         }
