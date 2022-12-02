@@ -1,3 +1,5 @@
+Name "Kubernetes Definition"
+
 # define name of installer
 OutFile "Installer.exe"
 
@@ -7,9 +9,20 @@ InstallDir "$PROFILE\AppData\Local\Programs\Kubernetes Definition"
 # Set the execution level
 RequestExecutionLevel user
 
+Page license
+Page instfiles
+
+UninstPage uninstconfirm
+UninstPage instfiles
+
+ShowInstDetails show
+ShowUninstDetails show
+
+LicenseText "Kubernetes Definition"
+LicenseData LICENSE
+
 # start default section
 Section
-
     # set the installation directory as the destination for the following actions
     SetOutPath $INSTDIR
     
