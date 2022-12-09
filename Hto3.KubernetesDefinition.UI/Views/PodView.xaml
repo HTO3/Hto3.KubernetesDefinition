@@ -1,0 +1,42 @@
+﻿<common:EditorViewBaseWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:common="clr-namespace:Hto3.KubernetesDefinition.UI.Common"
+        xmlns:viewModels="clr-namespace:Hto3.KubernetesDefinition.UI.ViewModels"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hto3.KubernetesDefinition.UI.Views"
+        xmlns:Components="clr-namespace:Hto3.KubernetesDefinition.UI.Components" x:Class="Hto3.KubernetesDefinition.UI.Views.PodView"
+        mc:Ignorable="d"
+        Title="Pod" Height="340" Width="677" d:DataContext="{d:DesignInstance {x:Type viewModels:PodViewModel}}">
+    <Canvas>
+        <TextBox Width="120" Text="{Binding Name}" Canvas.Left="15" Canvas.Top="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Name" Canvas.Left="10" Canvas.Top="10" ToolTip="Name must be unique within a namespace. Is required when creating resources,&#xA;although some resources may allow a client to request the generation&#xA;of an appropriate name automatically. Name is primarily intended&#xA;for creation idempotence and configuration definition. Cannot be updated.&#xA;More info: http://kubernetes.io/docs/user-guide/identifiers#names" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <GroupBox Width="376" Height="143" Canvas.Left="159" Canvas.Top="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <GroupBox.Header>
+                <TextBlock Text="Labels" ToolTip="Map of String keys and values that can be used to organize&#xA;and categorize (scope and select) objects. May match&#xA;selectors of replication controllers and services. More&#xA;info: http://kubernetes.io/docs/user-guide/labels" />
+            </GroupBox.Header>
+            <Components:KeyValueEditor DataContext="{Binding Labels}" />
+        </GroupBox>
+        <CheckBox Content="Use host network" Canvas.Left="15" Canvas.Top="139" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding HostNetwork}"/>
+        <TextBox Width="120" Text="{Binding HostName}" Canvas.Left="15" Canvas.Top="98" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label Content="Host Name" Canvas.Left="10" Canvas.Top="68" ToolTip="Name must be unique within a namespace. Is required when creating resources,&#xA;although some resources may allow a client to request the generation&#xA;of an appropriate name automatically. Name is primarily intended&#xA;for creation idempotence and configuration definition. Cannot be updated.&#xA;More info: http://kubernetes.io/docs/user-guide/identifiers#names" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <CheckBox Content="Share process&#xA;namespace" Canvas.Left="15" Canvas.Top="172" HorizontalAlignment="Center" VerticalAlignment="Top" IsChecked="{Binding ShareProcessNamespace}"/>
+        <GroupBox Width="116" Height="143" Canvas.Left="548" Canvas.Top="14" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <GroupBox.Header>
+                <TextBlock Text="Restart Policy" ToolTip="" />
+            </GroupBox.Header>
+            <StackPanel>
+                <RadioButton Content="Always" Margin="4,6,4,6" GroupName="RestartPolicy" IsChecked="{Binding RestartPolicy, ConverterParameter=Always, Converter={StaticResource EnumToBooleanConverter}}" />
+                <RadioButton Content="Never" Margin="4,6,4,6" GroupName="RestartPolicy" IsChecked="{Binding RestartPolicy, ConverterParameter=Never, Converter={StaticResource EnumToBooleanConverter}}" />
+                <RadioButton Content="On Failure" Margin="4,6,4,6" GroupName="RestartPolicy" IsChecked="{Binding RestartPolicy, ConverterParameter=OnFailure, Converter={StaticResource EnumToBooleanConverter}}" />
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Width="376" Height="143" Canvas.Left="159" Canvas.Top="168" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <GroupBox.Header>
+                <TextBlock Text="Node selector" />
+            </GroupBox.Header>
+            <Components:KeyValueEditor DataContext="{Binding NodeSelector}" />
+        </GroupBox>
+    </Canvas>
+</common:EditorViewBaseWindow>

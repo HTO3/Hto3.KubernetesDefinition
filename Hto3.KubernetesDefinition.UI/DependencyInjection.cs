@@ -34,6 +34,7 @@ namespace Hto3.KubernetesDefinition.UI
             Mvx.IoCProvider.RegisterType<IViewModelMapper<Service, ServiceViewModel>, ServiceViewModelMapper>();
             Mvx.IoCProvider.RegisterType<IViewModelMapper<CronJob, CronJobViewModel>, CronJobViewModelMapper>();
             Mvx.IoCProvider.RegisterType<IViewModelMapper<ConfigMap, ConfigMapViewModel>, ConfigMapViewModelMapper>();
+            Mvx.IoCProvider.RegisterType<IViewModelMapper<PodTemplateSpec, PodViewModel>, PodViewModelMapper>();
         }
     }
 }

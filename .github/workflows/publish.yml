@@ -29,13 +29,13 @@ jobs:
       - name: Pack Portable zip
         working-directory: ${{ env.OUTPUT_BIN_PATH }}
         run: 7z a -tzip -mx9 Portable.zip *.config *.exe *.dll
+      - name: Define version
+        run: Get-Date -Format "VERSION=yyyy-MM-dd" >> $env:GITHUB_ENV
       - name: Pack Installer
         run: |
           copy installer.nsi ${{ env.OUTPUT_BIN_PATH }}\installer.nsi
           copy LICENSE ${{ env.OUTPUT_BIN_PATH }}\LICENSE
-          makensis /V4 ${{ env.OUTPUT_BIN_PATH }}\installer.nsi
-      - name: Define version
-        run: Get-Date -Format "VERSION=yyyy-MM-dd" >> $env:GITHUB_ENV
+          makensis /DVERSION=v${{ env.VERSION }} /V4 ${{ env.OUTPUT_BIN_PATH }}\installer.nsi
       - name: Create github release
         uses: softprops/action-gh-release@v0.1.13
         with:

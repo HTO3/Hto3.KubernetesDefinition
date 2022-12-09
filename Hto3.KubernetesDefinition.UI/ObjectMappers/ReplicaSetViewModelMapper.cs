@@ -20,9 +20,7 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMappers
             deploymentSpec.ProgressDeadlineSeconds = source.ProgressDeadlineSeconds == 600 ? (Int32?)null : source.ProgressDeadlineSeconds;
             deploymentSpec.Selector = new LabelSelector();
             deploymentSpec.Selector.MatchLabels = source.LabelSelectorForPods.ToDictionary(e => e.Item1, e => e.Item2);
-            deploymentSpec.Template = new PodTemplateSpec();
-            deploymentSpec.Template.Metadata = new ObjectMeta();
-            deploymentSpec.Template.Metadata.Labels = source.LabelSelectorForPods.ToDictionary(e => e.Item1, e => e.Item2);
+            
             return deploymentSpec;
         }
 

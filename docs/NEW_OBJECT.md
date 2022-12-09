@@ -82,12 +82,12 @@ On project **Hto3.KubernetesDefinition.UI**, create a class in the folder `/Obje
 
 Proceed with these changes:
 * Make it public.
-* Implement the interface `: IObjectMetadata`
+* Implement the interface `: IObjectMetadataUI`
 
 Example:
 
 ```C#
-public class DeploymentMetadata : IObjectMetadata
+public class DeploymentMetadata : IObjectMetadataUI
 {
     public String EditorPath => "/Views/DeploymentView";
     public String IconName => "deploy.svg";
@@ -95,6 +95,7 @@ public class DeploymentMetadata : IObjectMetadata
     public String Description => "Deployment enables declarative updates for Pods and ReplicaSets.";
     public Type KubernetesObjectType => typeof(Models.KubernetesObjects.Deployment);
     public Type ManagerType => typeof(DeploymentObjectManagerViewModel);
+    public Boolean Unique => false;
 }
 ```
 

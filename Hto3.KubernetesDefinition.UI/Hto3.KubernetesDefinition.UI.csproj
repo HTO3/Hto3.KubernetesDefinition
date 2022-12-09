@@ -179,11 +179,13 @@
     <Compile Include="Messages\QueryFromExistingEditorMessage.cs" />
     <Compile Include="ObjectMappers\ConfigMapViewModelMapper.cs" />
     <Compile Include="ObjectMappers\CronJobViewModelMapper.cs" />
+    <Compile Include="ObjectMappers\PodViewModelMapper.cs" />
     <Compile Include="ObjectMetadata\ConfigMapMetadata.cs" />
     <Compile Include="ObjectMetadata\CronJobMetadata.cs" />
     <Compile Include="ObjectMetadata\DeploymentMetadata.cs" />
     <Compile Include="ObjectMetadata\NamespaceMetadata.cs" />
     <Compile Include="ObjectMetadata\ContainerMetadata.cs" />
+    <Compile Include="ObjectMetadata\PodMetadata.cs" />
     <Compile Include="ObjectMetadata\ReplicaSetMetadata.cs" />
     <Compile Include="ObjectMetadata\ServiceMetadata.cs" />
     <Compile Include="ObjectMetadata\VolumeMetadata.cs" />
@@ -226,10 +228,12 @@
     <Compile Include="ViewModels\HostPathViewModel.cs" />
     <Compile Include="ViewModels\NamespaceObjectManagerViewModel.cs" />
     <Compile Include="ViewModels\NamespaceViewModel.cs" />
-    <Compile Include="ViewModels\PodObjectManagerViewModel.cs" />
-    <Compile Include="ViewModels\PodViewModel.cs" />
+    <Compile Include="ViewModels\ContainerObjectManagerViewModel.cs" />
+    <Compile Include="ViewModels\ContainerViewModel.cs" />
     <Compile Include="Common\ExecuteContextMenuOption.cs" />
     <Compile Include="ViewModels\ObjectManagerViewModel.cs" />
+    <Compile Include="ViewModels\PodObjectManagerViewModel.cs" />
+    <Compile Include="ViewModels\PodViewModel.cs" />
     <Compile Include="ViewModels\ProbeViewModel.cs" />
     <Compile Include="ViewModels\ReplicaSetObjectManagerViewModel.cs" />
     <Compile Include="ViewModels\ReplicaSetViewModel.cs" />
@@ -267,6 +271,9 @@
     </Compile>
     <Compile Include="Views\ObjectManagerView.xaml.cs">
       <DependentUpon>ObjectManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PodView.xaml.cs">
+      <DependentUpon>PodView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProbeView.xaml.cs">
       <DependentUpon>ProbeView.xaml</DependentUpon>
@@ -348,6 +355,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ObjectManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PodView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

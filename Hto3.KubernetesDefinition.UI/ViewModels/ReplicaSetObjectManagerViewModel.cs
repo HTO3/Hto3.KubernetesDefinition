@@ -29,8 +29,7 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
             base.Prepare();
 
             base.OptionsToExecute.Add(null);
-            base.OptionsToExecute.Add(base.CreateAddMenuOption<ContainerMetadata>());
-            base.OptionsToExecute.Add(base.CreateAddMenuOption<VolumeMetadata>());
+            base.OptionsToExecute.Add(base.CreateAddMenuOption<PodMetadata>());
         }
 
         public override void ResolveKubernetesObjectChildren()
@@ -40,23 +39,8 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
 
             var deploymentSpec = (DeploymentSpec)base.KubernetesDataObject;
 
-            deploymentSpec.Template = deploymentSpec.Template ?? new PodTemplateSpec();
-            deploymentSpec.Template.Spec = new PodSpec();
-            deploymentSpec.Template.Spec.Containers = new List<Container>();
-            deploymentSpec.Template.Spec.Volumes = new List<Volume>();
-
-            foreach (var child in base.ChildrenKubernetesDataObjects)
-            {
-                if (child.KubernetesDataObject is Container)
-                    deploymentSpec.Template.Spec.Containers.Add((Container)child.KubernetesDataObject);
-                else if (child.KubernetesDataObject is Volume)
-                    deploymentSpec.Template.Spec.Volumes.Add((Volume)child.KubernetesDataObject);
-            }
-
-            if (deploymentSpec.Template.Spec.Containers.Count == 0)
-                deploymentSpec.Template.Spec.Containers = null;
-            if (deploymentSpec.Template.Spec.Volumes.Count == 0)
-                deploymentSpec.Template.Spec.Volumes = null;
+            if (base.ChildrenKubernetesDataObjects.Any())
+                deploymentSpec.Template = (PodTemplateSpec)base.ChildrenKubernetesDataObjects.Single().KubernetesDataObject;
         }
 
         public override void ResolveVisualizationChildren()
@@ -68,25 +52,15 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
 
             var deploymentSpec = (DeploymentSpec)base.KubernetesDataObject;
 
-            var innerObjects = new[]
-            {
-                (IEnumerable)deploymentSpec.Template?.Spec?.Containers.EmptyIfNull()
-                ,
-                (IEnumerable)deploymentSpec.Template?.Spec?.Volumes.EmptyIfNull()
-            };
+            if (deploymentSpec.Template.Metadata == null)
+                return;
 
-            foreach (var inners in innerObjects)
-            {
-                var kubeObjType = inners.GetItemType();
-                var addMetadata = base.OptionsToExecute.Single(o => o?.KubernetesObjectType == kubeObjType);
-                foreach (var obj in inners)
-                {
-                    base.AddCommand.Execute(addMetadata);
-                    var recentlyAdded = base.ChildrenKubernetesDataObjects.Last();
-                    recentlyAdded.KubernetesDataObject = obj;
-                    recentlyAdded.ResolveVisualizationChildren();
-                }
-            }
+            var addMetadata = base.OptionsToExecute.Single(o => o?.KubernetesObjectType == typeof(PodTemplateSpec));
+
+            base.AddCommand.Execute(addMetadata);
+            var recentlyAdded = base.ChildrenKubernetesDataObjects.Last();
+            recentlyAdded.KubernetesDataObject = deploymentSpec.Template;
+            recentlyAdded.ResolveVisualizationChildren();
         }
     }
 }
