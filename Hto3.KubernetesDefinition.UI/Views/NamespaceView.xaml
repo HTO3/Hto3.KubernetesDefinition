@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Title="Namespace" Height="94" Width="247" d:DataContext="{d:DesignInstance {x:Type viewModels:NamespaceViewModel}}">
     <Canvas>
-        <Label Content="Name" Canvas.Left="10" Canvas.Top="10" HorizontalAlignment="Center" VerticalAlignment="Center" ToolTip="Namespace defines the space within each name must be unique. An empty namespace is&#xA;equivalent to the &quot;default&quot; namespace, but &quot;default&quot; is the canonical representation.&#xA;Not all objects are required to be scoped to a namespace - the value of this field for&#xA;those objects will be empty."/>
-        <TextBox Width="120" Text="{Binding Name}" Canvas.Left="15" Canvas.Top="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Name" Canvas.Left="10" Canvas.Top="10" HorizontalAlignment="Center" VerticalAlignment="Center" ToolTip="Namespace defines the space within each name must be unique. An empty namespace is&#xA;equivalent to the &quot;default&quot; namespace, but &quot;default&quot; is the canonical representation.&#xA;Not all objects are required to be scoped to a namespace - the value of this field for&#xA;those objects will be empty." Target="{Binding ElementName=textBox, Mode=OneWay}"/>
+        <TextBox x:Name="textBox" Width="120" Text="{Binding Name}" Canvas.Left="15" Canvas.Top="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
     </Canvas>
 </common:EditorViewBaseWindow>

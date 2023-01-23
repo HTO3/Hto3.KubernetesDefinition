@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Validar.Fody.1.9.0\build\Validar.Fody.props" Condition="Exists('..\packages\Validar.Fody.1.9.0\build\Validar.Fody.props')" />
   <Import Project="..\packages\PropertyChanged.Fody.4.1.0\build\PropertyChanged.Fody.props" Condition="Exists('..\packages\PropertyChanged.Fody.4.1.0\build\PropertyChanged.Fody.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -42,6 +43,9 @@
     <ApplicationIcon>Resources\Icons\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation, Version=11.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.11.0.3\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Hto3.CollectionHelpers, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Hto3.CollectionHelpers.1.0.7\lib\net48\Hto3.CollectionHelpers.dll</HintPath>
     </Reference>
@@ -135,6 +139,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Validar, Version=1.9.0.0, Culture=neutral, PublicKeyToken=409b3227471b0f0d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Validar.Fody.1.9.0\lib\net452\Validar.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -156,10 +163,13 @@
     <Compile Include="Common\ExtensionMethods.cs" />
     <Compile Include="Common\IClearableViewModel.cs" />
     <Compile Include="Common\IObjectMetadata.cs" />
+    <Compile Include="Common\IValidationIgnition.cs" />
     <Compile Include="Common\IViewModelMapper.cs" />
     <Compile Include="Common\OpenFileDialogResult.cs" />
+    <Compile Include="Common\CommandManagerProxy.cs" />
     <Compile Include="Common\SaveFileDialogResult.cs" />
     <Compile Include="Common\ServicePortSetup.cs" />
+    <Compile Include="Common\ValidationTemplate.cs" />
     <Compile Include="Components\ConfigMapVolumeItemEditor.xaml.cs">
       <DependentUpon>ConfigMapVolumeItemEditor.xaml</DependentUpon>
     </Compile>
@@ -167,6 +177,7 @@
       <DependentUpon>ConfigMapFileEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\Base64StringToByteLenghtConverter.cs" />
+    <Compile Include="Converters\BooleanOrConverter.cs" />
     <Compile Include="Converters\EnumToBooleanConverter.cs" />
     <Compile Include="Converters\NameExtractorConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
@@ -189,6 +200,7 @@
     <Compile Include="ObjectMetadata\ReplicaSetMetadata.cs" />
     <Compile Include="ObjectMetadata\ServiceMetadata.cs" />
     <Compile Include="ObjectMetadata\VolumeMetadata.cs" />
+    <Compile Include="ObjectValidation\NamespaceValidator.cs" />
     <Compile Include="ViewModels\ConfigMapObjectManagerViewModel.cs" />
     <Compile Include="ViewModels\ConfigMapViewModel.cs" />
     <Compile Include="ViewModels\ConfigMapVolumeViewModel.cs" />
@@ -318,6 +330,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Dictionaries\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\DefaultStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ConfigMapView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -474,6 +494,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Fody.6.6.4\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.6.4\build\Fody.targets'))" />
     <Error Condition="!Exists('..\packages\PropertyChanged.Fody.4.1.0\build\PropertyChanged.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PropertyChanged.Fody.4.1.0\build\PropertyChanged.Fody.props'))" />
+    <Error Condition="!Exists('..\packages\Validar.Fody.1.9.0\build\Validar.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Validar.Fody.1.9.0\build\Validar.Fody.props'))" />
   </Target>
   <Target Name="ConfigurationAttribute" BeforeTargets="BeforeBuild" Condition="'$(SyncfusionLicense)' != ''">
     <WriteLinesToFile File="Properties\AssemblyInfo.cs" Lines="[assembly: Configuration(SyncfusionLicense = %22$(SyncfusionLicense)%22)]" />

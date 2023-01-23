@@ -9,8 +9,17 @@ namespace Hto3.KubernetesDefinition.UI.Common
 {
     public interface IObjectMetadataUI : IObjectMetadata
     {
+        /// <summary>
+        /// The MvxNavigation route path to reach the visualization. 
+        /// </summary>
         String EditorPath { get; }
+        /// <summary>
+        /// The SVG icon name.
+        /// </summary>
         String IconName { get; }
+        /// <summary>
+        /// The specialized type of the ObjectManager View Model, aka Canvas icon ViewModel.
+        /// </summary>
         Type ManagerType { get; }
     }
 }

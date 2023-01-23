@@ -212,6 +212,7 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
 
         public override void ViewDisappeared()
         {
+            base.ViewDisappeared();
             this.namespacesSignalSubscriptionToken.Dispose();
             this.kubernetesObjectChangingSubscriptionToken.Dispose();
             this.configMapSignalMessageSubscriptionToken.Dispose();

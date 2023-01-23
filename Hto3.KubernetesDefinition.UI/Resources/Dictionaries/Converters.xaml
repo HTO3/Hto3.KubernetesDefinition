@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:converters="clr-namespace:Hto3.KubernetesDefinition.UI.Converters"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverterUsingFalseAsCollapsed" FalseState="Collapsed" />
+    <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverterUsingFalseAsHidden" FalseState="Hidden" />
+    <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverterUsingNullAsCollapsed" NullState="Collapsed" />
+    <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverterUsingNullAsHidden" NullState="Hidden" />
+    <converters:AppendUriSegmentConverter x:Key="AppendUriSegmentConverter" />
+    <converters:NullToBooleanConverter x:Key="NullToBooleanConverter" />
+    <converters:EnumToDictionaryOptionsConverter x:Key="EnumToDictionaryOptionsConverter" />
+    <converters:NameExtractorConverter x:Key="NameExtractorConverter" />
+    <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+    <converters:NumberAddConverter x:Key="NumberAddConverter" />
+    <converters:Base64StringToByteLenghtConverter x:Key="Base64StringToByteLenghtConverter" />
+    <converters:BooleanOrConverter x:Key="BooleanOrConverter" />
+</ResourceDictionary>

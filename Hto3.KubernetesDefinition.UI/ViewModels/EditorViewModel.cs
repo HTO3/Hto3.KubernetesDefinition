@@ -1,19 +1,25 @@
-﻿using Hto3.KubernetesDefinition.Models;
+﻿using FluentValidation;
+using Hto3.KubernetesDefinition.Models;
+using Hto3.KubernetesDefinition.Models.KubernetesObjects;
 using Hto3.KubernetesDefinition.UI.Common;
 using Hto3.KubernetesDefinition.UI.Messages;
+using Microsoft.Extensions.Logging;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Validar;
 
 namespace Hto3.KubernetesDefinition.UI.ViewModels
 {
-    public abstract class EditorViewModel : MvxViewModel<Object>
+    [InjectValidation]
+    public abstract class EditorViewModel : MvxViewModel<Object>, IValidationIgnition
     {
         protected Object kubernetesDataObject;
         protected readonly IMvxNavigationService navigationService;
@@ -32,11 +38,17 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
         }
 
         public Action ActivateEditorView { get; set; }
+        public Boolean ValidationEnabled { get; set; }
+        public Action<String> ShowWaningDialog { get; set; }
 
         public MvxCommand OkCommand => new MvxCommand(() =>
         {
             this.ApplyCommand.Execute();
             this.navigationService.Close(this);
+        },
+        () =>
+        {
+            return this.ApplyCommand.CanExecute();
         });
 
         public MvxCommand ApplyCommand => new MvxCommand(() =>
@@ -48,6 +60,11 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
             this.kubernetesDataObject = newKubernetesObject;
 
             KubernetesObjectChanged();
+        },
+        () =>
+        {
+            var notifyErrorInfo = (INotifyDataErrorInfo)this;
+            return !notifyErrorInfo.HasErrors;
         });
 
         public MvxCommand CancelCommand => new MvxCommand(() =>
@@ -80,12 +97,20 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
             this.viewModelMapper.Fill(this.kubernetesDataObject, this);
         }
 
+        public override void ViewAppeared()
+        {
+            base.ViewAppeared();
+            this.ValidationEnabled = true;
+        }
+
         protected virtual void KubernetesObjectChanged()
         {
         }
 
         public override void ViewDisappeared()
         {
+            base.ViewDisappeared();
+            this.ValidationEnabled = false;
             this.kubernetesObjectChangingSubscriptionToken.Dispose();
             this.queryFromExistingEditorSubscriptionToken.Dispose();
         }

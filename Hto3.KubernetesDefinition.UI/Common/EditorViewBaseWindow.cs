@@ -53,6 +53,7 @@ namespace Hto3.KubernetesDefinition.UI.Common
         {
             var viewModel = (EditorViewModel)this.DataContext;
             viewModel.ActivateEditorView = null;
+            viewModel.ShowWaningDialog = null;
         }
 
         private void SetWin32NativeActions()
@@ -65,6 +66,8 @@ namespace Hto3.KubernetesDefinition.UI.Common
 
                 this.Activate();
             };
+
+            viewModel.ShowWaningDialog = new Action<string>(text => MessageBox.Show(text, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation));
         }
     }
 }

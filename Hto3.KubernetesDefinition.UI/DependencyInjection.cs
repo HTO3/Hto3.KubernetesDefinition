@@ -5,6 +5,7 @@ using Hto3.KubernetesDefinition.UI.Common;
 using Hto3.KubernetesDefinition.UI.ObjectMappers;
 using Hto3.KubernetesDefinition.UI.ViewModels;
 using MvvmCross;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
@@ -22,6 +23,7 @@ namespace Hto3.KubernetesDefinition.UI
         public override void Initialize()
         {
             Mvx.IoCProvider.RegisterSingleton<IMvxMessenger>(new MvxMessengerHub());
+            Mvx.IoCProvider.RegisterSingleton<IMvxCommandHelper>(new CommandManagerProxy());
             Mvx.IoCProvider.RegisterType<IOpenService, OpenService>();
             Mvx.IoCProvider.RegisterType<ISaveService, SaveService>();
             Mvx.IoCProvider.RegisterType<IKindResolverService, KindResolverService>();
