@@ -1,4 +1,4 @@
-﻿using Hto3.KubernetesDefinition.UI.Common;
+﻿using Hto3.KubernetesDefinition.UI.Common.WPF;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;

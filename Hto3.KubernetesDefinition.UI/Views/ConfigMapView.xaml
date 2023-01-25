@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:common="clr-namespace:Hto3.KubernetesDefinition.UI.Common"
+        xmlns:common="clr-namespace:Hto3.KubernetesDefinition.UI.Common.WPF"
         xmlns:local="clr-namespace:Hto3.KubernetesDefinition.UI.Views"
         xmlns:viewModels="clr-namespace:Hto3.KubernetesDefinition.UI.ViewModels"
         xmlns:Components="clr-namespace:Hto3.KubernetesDefinition.UI.Components" x:Class="Hto3.KubernetesDefinition.UI.Views.ConfigMapView"

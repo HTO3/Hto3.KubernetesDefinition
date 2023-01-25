@@ -5,7 +5,7 @@
              xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
              xmlns:viewModels="clr-namespace:Hto3.KubernetesDefinition.UI.ViewModels"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:common="clr-namespace:Hto3.KubernetesDefinition.UI.Common"
+             xmlns:common="clr-namespace:Hto3.KubernetesDefinition.UI.Common.WPF"
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              xmlns:local="clr-namespace:Hto3.KubernetesDefinition.UI.Views"
              xmlns:system="clr-namespace:System;assembly=System"

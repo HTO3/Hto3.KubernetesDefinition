@@ -2,6 +2,7 @@
 using Hto3.KubernetesDefinition.Models;
 using Hto3.KubernetesDefinition.Models.KubernetesObjects;
 using Hto3.KubernetesDefinition.UI.Common;
+using Hto3.KubernetesDefinition.UI.Common.Contracts;
 using Hto3.KubernetesDefinition.UI.Messages;
 using Microsoft.Extensions.Logging;
 using MvvmCross.Commands;

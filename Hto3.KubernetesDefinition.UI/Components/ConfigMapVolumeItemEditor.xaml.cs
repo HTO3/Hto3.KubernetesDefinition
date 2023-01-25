@@ -1,4 +1,5 @@
 ﻿using Hto3.KubernetesDefinition.UI.Common;
+using Hto3.KubernetesDefinition.UI.Common.Models;
 using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections;

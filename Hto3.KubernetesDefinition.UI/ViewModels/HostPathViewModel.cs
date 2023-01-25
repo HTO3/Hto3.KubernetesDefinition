@@ -1,5 +1,5 @@
 ﻿using Hto3.KubernetesDefinition.Models;
-using Hto3.KubernetesDefinition.UI.Common;
+using Hto3.KubernetesDefinition.UI.Common.Contracts;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;

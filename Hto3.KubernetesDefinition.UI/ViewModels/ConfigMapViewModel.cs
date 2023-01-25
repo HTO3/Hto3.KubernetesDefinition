@@ -1,4 +1,4 @@
-﻿using Hto3.KubernetesDefinition.UI.Common;
+﻿using Hto3.KubernetesDefinition.UI.Common.Contracts;
 using Hto3.KubernetesDefinition.UI.ViewModels;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Hto3.KubernetesDefinition.UI.Messages;
 using MvvmCross.ViewModels;
 using MvvmCross.Commands;
+using Hto3.KubernetesDefinition.UI.Common.Models;
 
 [assembly: MvxNavigation(typeof(ConfigMapViewModel), "/Views/ConfigMapView")]
 namespace Hto3.KubernetesDefinition.UI.ViewModels

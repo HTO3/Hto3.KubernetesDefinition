@@ -1,4 +1,4 @@
-﻿using Hto3.KubernetesDefinition.UI.Common;
+﻿using Hto3.KubernetesDefinition.UI.Common.WPF;
 using Hto3.KubernetesDefinition.UI.ViewModels;
 using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.ViewModels;

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Hto3.KubernetesDefinition.UI.Common
+namespace Hto3.KubernetesDefinition.UI.Common.Models
 {
     public class ExecuteContextMenuOption
     {

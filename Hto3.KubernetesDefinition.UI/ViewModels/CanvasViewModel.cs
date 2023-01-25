@@ -19,6 +19,7 @@ using System.Collections.Specialized;
 using PropertyChanged;
 using Hto3.StringHelpers;
 using Hto3.CollectionHelpers;
+using Hto3.KubernetesDefinition.UI.Common.WPF;
 
 [assembly: MvxNavigation(typeof(CanvasViewModel), "/Views/CanvasView")]
 namespace Hto3.KubernetesDefinition.UI.ViewModels

@@ -1,4 +1,4 @@
-﻿using Hto3.KubernetesDefinition.UI.Common;
+﻿using Hto3.KubernetesDefinition.UI.Common.Contracts;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using System;

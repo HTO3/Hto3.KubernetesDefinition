@@ -146,7 +146,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="YamlDotNet, Version=12.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-      <HintPath>..\packages\YamlDotNet.12.0.2\lib\net47\YamlDotNet.dll</HintPath>
+      <HintPath>..\packages\YamlDotNet.12.3.1\lib\net47\YamlDotNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -154,22 +154,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Common\ConfigMapFileEntry.cs" />
-    <Compile Include="Common\ConfigMapVolumeItem.cs" />
-    <Compile Include="Common\ConfigurationAttribute.cs" />
-    <Compile Include="Common\DummyKubernetesObject.cs" />
-    <Compile Include="Common\EditorViewBaseUserControl.cs" />
-    <Compile Include="Common\EditorViewBaseWindow.cs" />
+    <Compile Include="Common\Models\ConfigMapFileEntry.cs" />
+    <Compile Include="Common\Models\ConfigMapVolumeItem.cs" />
+    <Compile Include="Common\WPF\ConfigurationAttribute.cs" />
+    <Compile Include="Common\Models\DummyKubernetesObject.cs" />
+    <Compile Include="Common\WPF\EditorViewBaseUserControl.cs" />
+    <Compile Include="Common\WPF\EditorViewBaseWindow.cs" />
     <Compile Include="Common\ExtensionMethods.cs" />
-    <Compile Include="Common\IClearableViewModel.cs" />
-    <Compile Include="Common\IObjectMetadata.cs" />
-    <Compile Include="Common\IValidationIgnition.cs" />
-    <Compile Include="Common\IViewModelMapper.cs" />
-    <Compile Include="Common\OpenFileDialogResult.cs" />
-    <Compile Include="Common\CommandManagerProxy.cs" />
-    <Compile Include="Common\SaveFileDialogResult.cs" />
-    <Compile Include="Common\ServicePortSetup.cs" />
-    <Compile Include="Common\ValidationTemplate.cs" />
+    <Compile Include="Common\Contracts\IClearableViewModel.cs" />
+    <Compile Include="Common\Contracts\IObjectMetadata.cs" />
+    <Compile Include="Common\Contracts\IValidationIgnition.cs" />
+    <Compile Include="Common\Contracts\IViewModelMapper.cs" />
+    <Compile Include="Common\WPF\OpenFileDialogResult.cs" />
+    <Compile Include="Common\WPF\CommandManagerProxy.cs" />
+    <Compile Include="Common\WPF\SaveFileDialogResult.cs" />
+    <Compile Include="Common\Models\ServicePortSetup.cs" />
+    <Compile Include="Common\WPF\ValidationTemplate.cs" />
     <Compile Include="Components\ConfigMapVolumeItemEditor.xaml.cs">
       <DependentUpon>ConfigMapVolumeItemEditor.xaml</DependentUpon>
     </Compile>
@@ -242,7 +242,7 @@
     <Compile Include="ViewModels\NamespaceViewModel.cs" />
     <Compile Include="ViewModels\ContainerObjectManagerViewModel.cs" />
     <Compile Include="ViewModels\ContainerViewModel.cs" />
-    <Compile Include="Common\ExecuteContextMenuOption.cs" />
+    <Compile Include="Common\Models\ExecuteContextMenuOption.cs" />
     <Compile Include="ViewModels\ObjectManagerViewModel.cs" />
     <Compile Include="ViewModels\PodObjectManagerViewModel.cs" />
     <Compile Include="ViewModels\PodViewModel.cs" />

@@ -10,8 +10,9 @@ using System.Threading.Tasks;
 using FluentValidation.Results;
 using Hto3.CollectionHelpers;
 using Hto3.KubernetesDefinition.Models.KubernetesObjects;
+using Hto3.KubernetesDefinition.UI.Common.Contracts;
 
-namespace Hto3.KubernetesDefinition.UI.Common
+namespace Hto3.KubernetesDefinition.UI.Common.WPF
 {
     /// <summary>
     /// This Validation Template should work like a partial class on every ViewModel class, providing a validation logic.

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Hto3.KubernetesDefinition.UI.Common
+namespace Hto3.KubernetesDefinition.UI.Common.WPF
 {
     public class EditorViewBaseWindow : MvxWindow
     {

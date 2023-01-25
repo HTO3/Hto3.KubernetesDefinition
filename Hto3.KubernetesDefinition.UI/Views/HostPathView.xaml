@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
-             xmlns:common="clr-namespace:Hto3.KubernetesDefinition.UI.Common"
+             xmlns:common="clr-namespace:Hto3.KubernetesDefinition.UI.Common.WPF"
              xmlns:viewModels="clr-namespace:Hto3.KubernetesDefinition.UI.ViewModels"
              xmlns:local="clr-namespace:Hto3.KubernetesDefinition.UI.Views"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors" x:Class="Hto3.KubernetesDefinition.UI.Views.HostPathView"

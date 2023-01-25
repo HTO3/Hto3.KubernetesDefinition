@@ -1,4 +1,5 @@
 ﻿using Hto3.KubernetesDefinition.UI.Common;
+using Hto3.KubernetesDefinition.UI.Common.Contracts;
 using Hto3.KubernetesDefinition.UI.ViewModels;
 using System;
 using System.Collections.Generic;

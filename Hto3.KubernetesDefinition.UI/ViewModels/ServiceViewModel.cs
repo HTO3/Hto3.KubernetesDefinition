@@ -1,5 +1,6 @@
 ﻿using Hto3.KubernetesDefinition.Models.KubernetesObjects;
-using Hto3.KubernetesDefinition.UI.Common;
+using Hto3.KubernetesDefinition.UI.Common.Contracts;
+using Hto3.KubernetesDefinition.UI.Common.Models;
 using Hto3.KubernetesDefinition.UI.Messages;
 using Hto3.KubernetesDefinition.UI.ViewModels;
 using MvvmCross.Navigation;

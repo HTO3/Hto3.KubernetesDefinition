@@ -1,7 +1,7 @@
 ﻿using Hto3.CollectionHelpers;
 using Hto3.KubernetesDefinition.Models;
 using Hto3.KubernetesDefinition.Models.KubernetesObjects;
-using Hto3.KubernetesDefinition.UI.Common;
+using Hto3.KubernetesDefinition.UI.Common.Contracts;
 using Hto3.KubernetesDefinition.UI.ViewModels;
 using Hto3.StringHelpers;
 using MvvmCross.ViewModels;
