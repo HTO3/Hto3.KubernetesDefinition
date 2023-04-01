@@ -32,7 +32,7 @@ Proceed with these changes:
 The final result will be something like:
 
 ```C#
-using Hto3.KubernetesDefinition.UI.Common;
+using Hto3.KubernetesDefinition.UI.Common.Contracts;
 using Hto3.KubernetesDefinition.UI.ViewModels;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;

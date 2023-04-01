@@ -1,4 +1,5 @@
 ﻿using Hto3.CollectionHelpers;
+using Hto3.KubernetesDefinition.Models;
 using Hto3.KubernetesDefinition.Models.KubernetesObjects;
 using Hto3.KubernetesDefinition.UI.Common.Contracts;
 using Hto3.KubernetesDefinition.UI.ViewModels;
@@ -21,6 +22,12 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMappers
             deploymentSpec.Selector = new LabelSelector();
             deploymentSpec.Selector.MatchLabels = source.LabelSelectorForPods.ToDictionary(e => e.Item1, e => e.Item2);
             
+            if (source.StrategyType != default)
+            {
+                deploymentSpec.Strategy = new DeploymentStrategy();
+                deploymentSpec.Strategy.Type = source.StrategyType.ToString();
+            }
+            
             return deploymentSpec;
         }
 
@@ -28,6 +35,8 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMappers
         {
             target.Replicas = source.Replicas ?? 1;
             target.ProgressDeadlineSeconds = source.ProgressDeadlineSeconds ?? 600;
+            if (Enum.TryParse<RollStrategyType>(source.Strategy?.Type, out var strategyType))
+                target.StrategyType = strategyType;
 
             target.LabelSelectorForPods.Clear();
             target.LabelSelectorForPods.AddRange

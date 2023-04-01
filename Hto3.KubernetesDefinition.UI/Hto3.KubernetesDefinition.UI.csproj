@@ -249,6 +249,7 @@
     <Compile Include="ViewModels\ProbeViewModel.cs" />
     <Compile Include="ViewModels\ReplicaSetObjectManagerViewModel.cs" />
     <Compile Include="ViewModels\ReplicaSetViewModel.cs" />
+    <Compile Include="ViewModels\SecretViewModel.cs" />
     <Compile Include="ViewModels\ServiceObjectManagerViewModel.cs" />
     <Compile Include="ViewModels\ServiceViewModel.cs" />
     <Compile Include="ViewModels\BestPracticesResultViewModel.cs" />
@@ -486,6 +487,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Gliphs\ctn.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Gliphs\secret.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

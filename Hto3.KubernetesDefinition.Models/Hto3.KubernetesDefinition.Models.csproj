@@ -58,6 +58,7 @@
     <Compile Include="PolicyValidationResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestartPolicy.cs" />
+    <Compile Include="RollStrategyType.cs" />
     <Compile Include="RuleResult.cs" />
     <Compile Include="ValidationOutput.cs" />
     <Compile Include="VolumeType.cs" />

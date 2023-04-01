@@ -1,4 +1,5 @@
-﻿using Hto3.KubernetesDefinition.Models.KubernetesObjects;
+﻿using Hto3.KubernetesDefinition.Models;
+using Hto3.KubernetesDefinition.Models.KubernetesObjects;
 using Hto3.KubernetesDefinition.UI.Common.Contracts;
 using Hto3.KubernetesDefinition.UI.ObjectMappers;
 using Hto3.KubernetesDefinition.UI.ViewModels;
@@ -28,5 +29,6 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
         public MvxObservableCollection<Tuple<String, String>> LabelSelectorForPods { get; }
         public Int32 ProgressDeadlineSeconds { get; set; }
         public Int32 Replicas { get; set; }
+        public RollStrategyType StrategyType { get; set; } 
     }
 }
