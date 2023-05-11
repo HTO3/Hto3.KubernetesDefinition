@@ -28,8 +28,7 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
             base.Prepare();
 
             base.OptionsToExecute.Add(null);
-            base.OptionsToExecute.Add(base.CreateAddMenuOption<ContainerMetadata>());
-            base.OptionsToExecute.Add(base.CreateAddMenuOption<VolumeMetadata>());
+            base.OptionsToExecute.Add(base.CreateAddMenuOption<PodMetadata>());
         }
 
         public override void ResolveKubernetesObjectChildren()
@@ -40,22 +39,8 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
             var cronJob = (CronJob)base.KubernetesDataObject;
 
             cronJob.Spec.JobTemplate.Spec = new JobSpec();
-            cronJob.Spec.JobTemplate.Spec.Template.Spec = new PodSpec();
-            cronJob.Spec.JobTemplate.Spec.Template.Spec.Containers = new List<Container>();
-            cronJob.Spec.JobTemplate.Spec.Template.Spec.Volumes = new List<Volume>();
-
-            foreach (var child in base.ChildrenKubernetesDataObjects)
-            {
-                if (child.KubernetesDataObject is Container)
-                    cronJob.Spec.JobTemplate.Spec.Template.Spec.Containers.Add((Container)child.KubernetesDataObject);
-                else if (child.KubernetesDataObject is Volume)
-                    cronJob.Spec.JobTemplate.Spec.Template.Spec.Volumes.Add((Volume)child.KubernetesDataObject);
-            }
-
-            if (cronJob.Spec.JobTemplate.Spec.Template.Spec.Containers.Count == 0)
-                cronJob.Spec.JobTemplate.Spec.Template.Spec.Containers = null;
-            if (cronJob.Spec.JobTemplate.Spec.Template.Spec.Volumes.Count == 0)
-                cronJob.Spec.JobTemplate.Spec.Template.Spec.Volumes = null;
+            if (base.ChildrenKubernetesDataObjects.Any())
+                cronJob.Spec.JobTemplate.Spec.Template = (PodTemplateSpec)base.ChildrenKubernetesDataObjects.Single().KubernetesDataObject;
         }
 
         public override void ResolveVisualizationChildren()
@@ -67,25 +52,15 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
 
             var cronJob = (CronJob)base.KubernetesDataObject;
 
-            var innerObjects = new[]
-            {
-                (IEnumerable)cronJob.Spec?.JobTemplate?.Spec?.Template?.Spec?.Containers.EmptyIfNull()
-                ,
-                (IEnumerable)cronJob.Spec?.JobTemplate?.Spec?.Template?.Spec?.Volumes.EmptyIfNull()
-            };
+            if (cronJob.Spec?.JobTemplate?.Spec?.Template == null)
+                return;
 
-            foreach (var inners in innerObjects)
-            {
-                var kubeObjType = inners.GetItemType();
-                var addMetadata = base.OptionsToExecute.Single(o => o?.KubernetesObjectType == kubeObjType);
-                foreach (var obj in inners)
-                {
-                    base.AddCommand.Execute(addMetadata);
-                    var recentlyAdded = base.ChildrenKubernetesDataObjects.Last();
-                    recentlyAdded.KubernetesDataObject = obj;
-                    recentlyAdded.ResolveVisualizationChildren();
-                }
-            }
+            var addMetadata = base.OptionsToExecute.Single(o => o?.KubernetesObjectType == typeof(PodTemplateSpec));
+
+            base.AddCommand.Execute(addMetadata);
+            var recentlyAdded = base.ChildrenKubernetesDataObjects.Last();
+            recentlyAdded.KubernetesDataObject = cronJob.Spec.JobTemplate.Spec.Template;
+            recentlyAdded.ResolveVisualizationChildren();
         }
     }
 }

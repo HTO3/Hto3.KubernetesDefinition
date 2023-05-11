@@ -16,17 +16,19 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMappers
         public PodTemplateSpec ConvertBack(PodViewModel source)
         {
             var podTemplateSpec = new PodTemplateSpec();
-            podTemplateSpec.Metadata = new ObjectMeta();
-            podTemplateSpec.Metadata.Name = source.Name;
-            if (source.Labels.Any())
-                podTemplateSpec.Metadata.Labels = source.Labels.ToDictionary(e => e.Item1, e => e.Item2);
+            if (!String.IsNullOrEmpty(source.Name) || source.Labels.Any())
+            {
+                podTemplateSpec.Metadata = new ObjectMeta();
+                podTemplateSpec.Metadata.Name = source.Name;
+                if (source.Labels.Any())
+                    podTemplateSpec.Metadata.Labels = source.Labels.ToDictionary(e => e.Item1, e => e.Item2);
+            }
             podTemplateSpec.Spec = new PodSpec();
             if (source.HostNetwork)
                 podTemplateSpec.Spec.HostNetwork = true;
             if (!String.IsNullOrWhiteSpace(source.HostName))
                 podTemplateSpec.Spec.Hostname = source.HostName;
-            if (source.RestartPolicy != Models.RestartPolicy.Always)
-                podTemplateSpec.Spec.RestartPolicy = source.RestartPolicy.ToString();
+            podTemplateSpec.Spec.RestartPolicy = source.RestartPolicy.ToString();
             if (source.ShareProcessNamespace)
                 podTemplateSpec.Spec.ShareProcessNamespace = true;
             if (source.NodeSelector.Any())
@@ -39,12 +41,13 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMappers
         {
             target.Name = source.Metadata?.Name;
             target.Labels.Clear();
-            target.Labels.AddRange
-                (
-                    source.Metadata?.Labels
-                        .EmptyIfNull()
-                        .Select(l => new Tuple<String, String>(l.Key, l.Value))
-                );
+            if (source.Metadata != null)
+                target.Labels.AddRange
+                    (
+                        source.Metadata.Labels
+                            .EmptyIfNull()
+                            .Select(l => new Tuple<String, String>(l.Key, l.Value))
+                    );
             target.HostNetwork = source.Spec.HostNetwork == true;
             target.HostName = source.Spec.Hostname;
             target.NodeSelector.Clear();
