@@ -1,4 +1,5 @@
-﻿using Hto3.KubernetesDefinition.Models.KubernetesObjects;
+﻿using Hto3.KubernetesDefinition.Models;
+using Hto3.KubernetesDefinition.Models.KubernetesObjects;
 using Hto3.KubernetesDefinition.UI.Common.Contracts;
 using Hto3.KubernetesDefinition.UI.Common.Models;
 using Hto3.KubernetesDefinition.UI.Messages;
@@ -31,6 +32,7 @@ namespace Hto3.KubernetesDefinition.UI.ViewModels
         public String Name { get; set; }
         public String Namespace { get; set; }
         public String Type { get; set; }
+        public ExternalTrafficPolicy TrafficPolicy { get; set; }
         public MvxObservableCollection<Tuple<String, String>> Selector { get; }
         public MvxObservableCollection<ServicePortSetup> ServicePorts { get; }
         public MvxObservableCollection<String> LocalNamespacesList { get; set; }

@@ -24,6 +24,8 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMappers
             service.Metadata.Namespace = source.Namespace;
             service.Spec = new ServiceSpec();
             service.Spec.Type = source.Type;
+            if (source.TrafficPolicy != Models.ExternalTrafficPolicy.Cluster)
+                service.Spec.ExternalTrafficPolicy = source.TrafficPolicy.ToString();
             service.Spec.Selector = source.Selector.ToDictionary(s => s.Item1, s => s.Item2);
             service.Spec.Ports = source.ServicePorts
                 .Select(p => new ServicePort()
@@ -42,6 +44,12 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMappers
             target.Name = source.Metadata?.Name;
             target.Namespace = source.Metadata?.Namespace;
             target.Type = source.Spec?.Type ?? "ClusterIP";
+            target.TrafficPolicy =
+                source.Spec?.ExternalTrafficPolicy == null
+                    ?
+                Models.ExternalTrafficPolicy.Cluster
+                    :
+                (Models.ExternalTrafficPolicy)Enum.Parse(typeof(Models.ExternalTrafficPolicy), source.Spec.ExternalTrafficPolicy);
 
             target.Selector.Clear();
             target.Selector.AddRange
