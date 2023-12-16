@@ -194,6 +194,8 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMappers
                 if (probe.HttpGet != null)
                 {
                     probeViewModel.ByHttpRequest = true;
+                    probeViewModel.ByTcpSocket = false;
+                    probeViewModel.ByCommand = false;
                     probeViewModel.RequestUrl = probe.HttpGet.Path;
                     probeViewModel.RequestPort = Int32.Parse(probe.HttpGet.Port);
                     probeViewModel.CustomHeaders.AddRange
@@ -206,11 +208,15 @@ namespace Hto3.KubernetesDefinition.UI.ObjectMappers
                 else if (probe.TcpSocket != null)
                 {
                     probeViewModel.ByTcpSocket = true;
+                    probeViewModel.ByHttpRequest = false;
+                    probeViewModel.ByCommand = false;
                     probeViewModel.TCPSocketPort = Int32.Parse(probe.TcpSocket.Port);
                 }
                 else if (probe.Exec != null)
                 {
                     probeViewModel.ByCommand = true;
+                    probeViewModel.ByHttpRequest = false;
+                    probeViewModel.ByTcpSocket = false;
                     probeViewModel.Commands.AddRange(probe.Exec.Command.EmptyIfNull());
                 }
 
