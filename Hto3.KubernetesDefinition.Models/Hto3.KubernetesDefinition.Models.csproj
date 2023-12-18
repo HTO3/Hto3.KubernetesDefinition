@@ -50,6 +50,7 @@
     <Compile Include="Contracts\IOpenService.cs" />
     <Compile Include="Contracts\ISaveService.cs" />
     <Compile Include="ExternalTrafficPolicy.cs" />
+    <Compile Include="FailureLocation.cs" />
     <Compile Include="HostPathType.cs" />
     <Compile Include="KubernetesObjects\SetOfClasses.cs" />
     <Compile Include="Medium.cs" />

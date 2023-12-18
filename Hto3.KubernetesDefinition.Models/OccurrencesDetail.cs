@@ -13,5 +13,6 @@ namespace Hto3.KubernetesDefinition.Models
         public String SkipMessage { get; set; }
         public Int32 Occurrences { get; set; }
         public Boolean IsSkipped { get; set; }
+        public FailureLocation[] FailureLocations { get; set; }
     }
 }

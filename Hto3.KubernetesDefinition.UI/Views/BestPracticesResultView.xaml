@@ -14,19 +14,37 @@
                 <DataTemplate>
                     <StackPanel Margin="12">
                         <TextBlock Text="{Binding Name}" FontWeight="Bold" TextWrapping="Wrap"/>
-                        <TextBlock Text="{Binding MessageOnFailure}" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding MessageOnFailure}" TextWrapping="Wrap" Foreground="#FFA00000" />
                         <ItemsControl ItemsSource="{Binding OccurrencesDetails, Mode=OneWay}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <WrapPanel>
-                                        <TextBlock Text="Root object: "/>
-                                        <TextBlock Text="{Binding MetadataName}" Foreground="#FF555555" FontWeight="Bold" />
-                                        <TextBlock Text=" (kind: "/>
-                                        <TextBlock Text="{Binding Kind}" Foreground="#FF2800E5"/>
-                                        <TextBlock Text=") "/>
-                                        <TextBlock Text="{Binding Occurrences}"/>
-                                        <TextBlock Text=" ocurrence(s)"/>
-                                    </WrapPanel>
+                                    <StackPanel>
+                                        <WrapPanel>
+                                            <TextBlock Text="Root object: "/>
+                                            <TextBlock Text="{Binding MetadataName}" Foreground="#FF555555" FontWeight="Bold" />
+                                            <TextBlock Text=" (kind: "/>
+                                            <TextBlock Text="{Binding Kind}" Foreground="#FF2800E5"/>
+                                            <TextBlock Text=") "/>
+                                            <TextBlock Text="{Binding Occurrences}"/>
+                                            <TextBlock Text=" ocurrence(s):"/>
+                                        </WrapPanel>
+                                        <ItemsControl ItemsSource="{Binding FailureLocations, Mode=OneWay}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+                                                        <WrapPanel>
+                                                            <TextBlock Text="{Binding SchemaPath, StringFormat='    ▪ \{0\}'}"/>
+                                                            <TextBlock Text="  (line "/>
+                                                            <TextBlock Text="{Binding FailedErrorLine, Mode=OneWay}" Foreground="#FFA00000"/>
+                                                            <TextBlock Text=" | column "/>
+                                                            <TextBlock Text="{Binding FailedErrorColumn, Mode=OneWay}" Foreground="#FFA00000"/>
+                                                            <TextBlock Text=")"/>
+                                                        </WrapPanel>                                                        
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>                                    
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
